@@ -256,6 +256,144 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/30/文件系统和虚拟文件系统交换（VFS）/" itemprop="url">
+                  文件系统和虚拟文件系统交换（VFS）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-30T10:11:37+08:00" content="2016-08-30">
+              2016-08-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Apple-Development/" itemprop="url" rel="index">
+                    <span itemprop="name">Apple Development</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Apple-Development/深入解析Mac-OS-X-iOS操作系统笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">深入解析Mac OS X && iOS操作系统笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="硬盘分区"><a href="#硬盘分区" class="headerlink" title="硬盘分区"></a>硬盘分区</h2><h3 id="主引导记录（Master-Boot-Record，MBR）"><a href="#主引导记录（Master-Boot-Record，MBR）" class="headerlink" title="主引导记录（Master Boot Record，MBR）"></a>主引导记录（Master Boot Record，MBR）</h3><ul>
+<li>只能有4个分区，2的32次方的扇区（一个扇区512字节），并且第一个扇区的前440个字节用来存储启动引导程序，从446开始的16*4个字节用来存储4个分区表的信息，剩下的2个字节则是MBR的签名。</li>
+</ul>
+<h3 id="Apple-Partion-Map"><a href="#Apple-Partion-Map" class="headerlink" title="Apple Partion Map"></a>Apple Partion Map</h3><ul>
+<li>32位方案，突破了4个分区的限制</li>
+</ul>
+<h3 id="GUID分区表（GUID-Partion-Table，GPT）"><a href="#GUID分区表（GUID-Partion-Table，GPT）" class="headerlink" title="GUID分区表（GUID Partion Table，GPT）"></a>GUID分区表（GUID Partion Table，GPT）</h3><ul>
+<li>64位方案</li>
+</ul>
+<h2 id="软链接与硬链接"><a href="#软链接与硬链接" class="headerlink" title="软链接与硬链接"></a>软链接与硬链接</h2><ul>
+<li>通常我们看到的文件名只是文件属性的一部分，而实际指向文件的是文件号（node）。</li>
+<li>硬链接就是指不同的文件名指向同一个文件号，只有所有的文件名删除掉了，该文件才会被删除。（可以类比成iOS的引用计数）。</li>
+<li>软链接则拥有自己的文件号（node），而node指向的文件数据则跟一般的文件数据不一样，它里面包含了目标文件的文件路径。（可以类比成浅拷贝），因此软链接可以夸文件系统。如果文件删除了，那么软链接指向的数据就是错误的。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/30/React Native笔记/" itemprop="url">
                   React Native笔记
                 </a>
@@ -1600,139 +1738,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/19/iOS中的MAX-A-B-，需要注意的点/" itemprop="url">
-                  iOS中的MAX(A,B)，需要注意的点
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-19T11:22:30+08:00" content="2016-04-19">
-              2016-04-19
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Apple-Development/" itemprop="url" rel="index">
-                    <span itemprop="name">Apple Development</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Apple-Development/iOS开发笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS开发笔记</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="问题由来"><a href="#问题由来" class="headerlink" title="问题由来"></a>问题由来</h2><p>今天有朋友在使用MAX(A,B)的时候出现了一个诡异的问题,代码是这样的：<br><img src="https://github.com/Easence/EADocuments/blob/master/Apple/iOS%20Development/OC/images/Max(A,B)/1.jpeg?raw=true" alt="代码1"></p>
-<p>而执行的结果竟然是这样的：<br><img src="https://github.com/Easence/EADocuments/blob/master/Apple/iOS%20Development/OC/images/Max(A,B)/2.jpeg?raw=true" alt="结果1"></p>
-<p>“我是不是眼花了？max(-1,0)返回了-1？”我的朋友惊讶到。这不科学啊，怎么会负数比0大呢？于是我查看了MAX(A,B)的源码：<br><img src="https://github.com/Easence/EADocuments/blob/master/Apple/iOS%20Development/OC/images/Max(A,B)/3.png?raw=true" alt="MAX源码"></p>
-<h2 id="验证过程"><a href="#验证过程" class="headerlink" title="验证过程"></a>验证过程</h2><p>然后我做了如下两个实验（请注意调试区a的类型）：</p>
-<h3 id="实验1：（a的类型为unsigned-long）"><a href="#实验1：（a的类型为unsigned-long）" class="headerlink" title="实验1：（a的类型为unsigned long）"></a>实验1：（a的类型为unsigned long）</h3><p><img src="https://github.com/Easence/EADocuments/blob/master/Apple/iOS%20Development/OC/images/Max(A,B)/4.jpeg?raw=true" alt="实验1"></p>
-<h3 id="实验2：（a的类型为int）"><a href="#实验2：（a的类型为int）" class="headerlink" title="实验2：（a的类型为int）"></a>实验2：（a的类型为int）</h3><p><img src="https://github.com/Easence/EADocuments/blob/master/Apple/iOS%20Development/OC/images/Max(A,B)/5.png?raw=true" alt="实验2"></p>
-<p>通过这两个实验我们可以发现：由于NSArray的count属性是个NSUInteger类型，因此_<em>typeof</em>(array.count - 1) 会得到一个无符号的类型，当array.count - 1为负数的时候，就相当于(NSUInteger)(负数) = 正数，因此会有MAX(array.count - 1, 0) = (NSUInteger)（array.count - 1）。如下图所示：<br><img src="https://github.com/Easence/EADocuments/blob/master/Apple/iOS%20Development/OC/images/Max(A,B)/6.png?raw=true" alt="结果"></p>
-<h2 id="结论："><a href="#结论：" class="headerlink" title="结论："></a>结论：</h2><p>当使用MAX(A,B)取大值的时候要注意A、B是否是无符号型，可以统一将它们转换成有符号型来进行比较。如下图：<br><img src="https://github.com/Easence/EADocuments/blob/master/Apple/iOS%20Development/OC/images/Max(A,B)/7.png?raw=true" alt="结论"></p>
-<hr>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1778,7 +1783,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1795,7 +1800,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
