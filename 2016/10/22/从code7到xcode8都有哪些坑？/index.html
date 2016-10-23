@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="EA88'Blog">
 <meta property="og:description" content="冲动的惩罚自从有那段使用beta版本的Mac OSX系统，导致机器时常开机卡死的经历之后，就尽量不敢在第一时间使用苹果的beta版系统。但是，由于自己是名iOS开发者，当Xcode出了beta版本无疑是需要第一时间体验一下的，即使Xcode beta版本可以不体验，但是出了第一个Release版本却是不得不更新。接下来讲的就是在使用Xcode8.0所遇到的坑。
 坑与填平坑Storyboard对于S">
-<meta property="og:updated_time" content="2016-10-22T02:18:37.000Z">
+<meta property="og:updated_time" content="2016-10-22T15:41:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从code7到xcode8都有哪些坑?">
 <meta name="twitter:description" content="冲动的惩罚自从有那段使用beta版本的Mac OSX系统，导致机器时常开机卡死的经历之后，就尽量不敢在第一时间使用苹果的beta版系统。但是，由于自己是名iOS开发者，当Xcode出了beta版本无疑是需要第一时间体验一下的，即使Xcode beta版本可以不体验，但是出了第一个Release版本却是不得不更新。接下来讲的就是在使用Xcode8.0所遇到的坑。
@@ -162,7 +162,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">今天比昨天进步一点点</p>
+  <p class="site-subtitle">见自己、见天地、见众生</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -330,7 +330,7 @@
       
         <h2 id="冲动的惩罚"><a href="#冲动的惩罚" class="headerlink" title="冲动的惩罚"></a>冲动的惩罚</h2><p>自从有那段使用beta版本的Mac OSX系统，导致机器时常开机卡死的经历之后，就尽量不敢在第一时间使用苹果的beta版系统。但是，由于自己是名iOS开发者，当Xcode出了beta版本无疑是需要第一时间体验一下的，即使Xcode beta版本可以不体验，但是出了第一个Release版本却是不得不更新。接下来讲的就是在使用Xcode8.0所遇到的坑。</p>
 <h2 id="坑与填平坑"><a href="#坑与填平坑" class="headerlink" title="坑与填平坑"></a>坑与填平坑</h2><h3 id="Storyboard"><a href="#Storyboard" class="headerlink" title="Storyboard"></a>Storyboard</h3><p>对于Storyboard相信大家对它都不陌生，自从iOS5之后就开始支持了，是一种可视化开发组件。本人使用过Android、Windows Phone以及iOS的可视化组件，可以说Storyboard是这三个平台中最流畅、最好用的可视化开发组件，采用StoryBoard虽然会比纯代码写UI效率上会有那么一点损耗，但对于一般的应用，在开发之初它确实可以大大的提高开发效率、也易于维护（可以想想当年那些不采用Storyboard编写的代码，即使更改一个坐标位置都是极其痛苦的），可以说是利大于弊。但是就在最近升级到Xcode8之后，发现StoryBoard有如下几点变动（坑）。</p>
-<h4 id="首先是给所有UI控件的宽高设定了同一个初始值：1000。"><a href="#首先是给所有UI控件的宽高设定了同一个初始值：1000。" class="headerlink" title="首先是给所有UI控件的宽高设定了同一个初始值：1000。"></a>首先是给所有UI控件的宽高设定了同一个初始值：1000。</h4><p>在Xcode7的时候，StoryBoard生成的UI控件的默认宽高都是3.5英寸的宽高。采用自动布局时，在load完Storyboard之后，读取到UI控件的宽虽然不正确，但是大部分情况下高却是我们想要的，并且由于宽是320，是小于等于任何尺寸的宽，所以在UI渲染上并没有可见性的问题。<br>但是对于Xcode8则不同，只要是通过Storyboard生成的UI都是统一给定一个固定值：1000。在load完Storyboard之后，自动布局计算完高度之前，读出来的宽高都是1000。这就导致原先所有依赖于bounds计算位置宽高，没有任何问题的UI展示逻辑，采用Xcode8一编译就乱套了，比如会看到：图片无故拉长后再恢复原状，原先好好的布局出现了UI重叠在一起，有的UI甚至刷新不出来等。解决的办法主要有两个：</p>
+<h4 id="所有UI控件的宽高设定了同一个初始值：1000。"><a href="#所有UI控件的宽高设定了同一个初始值：1000。" class="headerlink" title="所有UI控件的宽高设定了同一个初始值：1000。"></a>所有UI控件的宽高设定了同一个初始值：1000。</h4><p>在Xcode7的时候，StoryBoard生成的UI控件的默认宽高都是3.5英寸的宽高。采用自动布局时，在load完Storyboard之后，读取到UI控件的宽虽然不正确，但是大部分情况下高却是我们想要的，并且由于宽是320，是小于等于任何尺寸的宽，所以在UI渲染上并没有可见性的问题。<br>但是对于Xcode8则不同，只要是通过Storyboard生成的UI都是统一给定一个固定值：1000。在load完Storyboard之后，自动布局计算完高度之前，读出来的宽高都是1000。这就导致原先所有依赖于bounds计算位置宽高，没有任何问题的UI展示逻辑，采用Xcode8一编译就乱套了，比如会看到：图片无故拉长后再恢复原状，原先好好的布局出现了UI重叠在一起，有的UI甚至刷新不出来等。解决的办法主要有两个：</p>
 <ul>
 <li><strong>将Storyboar的打开方式选择xcode7.x</strong>（在右侧Show the file inspector-&gt;interface Builder Document-&gt;open in）。但这么做的缺点是：当你再次打开Storyboard，Xcode又帮你自动选中打开方式为Xcode8.0。而且为了以后着想，还是采用下面这种方式吧。</li>
 <li>在代码要使用UI宽高做些计算之前，调用一下<strong>layoutIfNeeded</strong>。这样就能获得在Storyboard设计的宽高（当使用4.0英寸来设计获得就是在4.0英寸下的宽高，采用的是3.0英寸来设计获得的就是3.0英寸的宽高）。</li>
@@ -372,6 +372,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/23/高效学习法/" rel="prev" title="高效学习法">
+                高效学习法 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -434,12 +438,12 @@
                src="/images/avatar.jpg"
                alt="EA88" />
           <p class="site-author-name" itemprop="name">EA88</p>
-          <p class="site-description motion-element" itemprop="description">今天比昨天进步一点点</p>
+          <p class="site-description motion-element" itemprop="description">见自己、见天地、见众生</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -505,7 +509,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#冲动的惩罚"><span class="nav-number">1.</span> <span class="nav-text">冲动的惩罚</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#坑与填平坑"><span class="nav-number">2.</span> <span class="nav-text">坑与填平坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Storyboard"><span class="nav-number">2.1.</span> <span class="nav-text">Storyboard</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先是给所有UI控件的宽高设定了同一个初始值：1000。"><span class="nav-number">2.1.1.</span> <span class="nav-text">首先是给所有UI控件的宽高设定了同一个初始值：1000。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cornerRadius"><span class="nav-number">2.1.2.</span> <span class="nav-text">cornerRadius</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TableView-static-cells"><span class="nav-number">2.1.3.</span> <span class="nav-text">TableView static cells</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不支持iOS7，却可以提交iOS7应用"><span class="nav-number">2.1.4.</span> <span class="nav-text">不支持iOS7，却可以提交iOS7应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#卡卡卡"><span class="nav-number">2.1.5.</span> <span class="nav-text">卡卡卡</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">3.</span> <span class="nav-text">最后</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#冲动的惩罚"><span class="nav-number">1.</span> <span class="nav-text">冲动的惩罚</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#坑与填平坑"><span class="nav-number">2.</span> <span class="nav-text">坑与填平坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Storyboard"><span class="nav-number">2.1.</span> <span class="nav-text">Storyboard</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#所有UI控件的宽高设定了同一个初始值：1000。"><span class="nav-number">2.1.1.</span> <span class="nav-text">所有UI控件的宽高设定了同一个初始值：1000。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cornerRadius"><span class="nav-number">2.1.2.</span> <span class="nav-text">cornerRadius</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TableView-static-cells"><span class="nav-number">2.1.3.</span> <span class="nav-text">TableView static cells</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不支持iOS7，却可以提交iOS7应用"><span class="nav-number">2.1.4.</span> <span class="nav-text">不支持iOS7，却可以提交iOS7应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#卡卡卡"><span class="nav-number">2.1.5.</span> <span class="nav-text">卡卡卡</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">3.</span> <span class="nav-text">最后</span></a></li></ol></div>
             
           </div>
         </section>
