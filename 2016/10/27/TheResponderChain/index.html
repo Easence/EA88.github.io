@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Mach," />
+  <meta name="keywords" content="事件响应链," />
 
 
 
@@ -84,31 +84,22 @@
 
 
 
-<meta name="description" content="线程线程是个结构体
-任务（task）线程的容器，是以线程为元素的数组
-优先级运行队列将同等优先级的线程放到同一个数组，而运行队列则是优先级数组的数组
-续体为降低切换线程消耗资源而设计的数据结构，里面包含了线程的状态以及入口，当线程切换时候，调度器找到目标线程的续体，然后从续体恢复状态，进入线程。
-抢占模式
-显示抢占：线程自己管理自己对资源的占用，即，自己管理自己在什么让出CPU，或者什么时候占用C">
+<meta name="description" content="通常我们开发的app的UI元素都是有一个个view对堆叠起来的，也就是说我们点击屏幕的某一个区域的时候，会触动所有包含这个区域的view。那么这个触摸事件该由哪个View来处理，或者我们想更改iOS默认的处理方式又该如何下手，我们就需要先了解iOS中的事件是如何分发以及如何响应的。接下来介绍的是从官方文档精选出来的一部内容并加以了说明。
+事件分发当用户触发一个事件，UIKit会创建一个对应的对象来">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mach调度">
-<meta property="og:url" content="https://github.com/Easence/2016/08/30/Mach调度/index.html">
+<meta property="og:title" content="iOS的事件处理顺序">
+<meta property="og:url" content="https://github.com/Easence/2016/10/27/TheResponderChain/index.html">
 <meta property="og:site_name" content="EA88'Blog">
-<meta property="og:description" content="线程线程是个结构体
-任务（task）线程的容器，是以线程为元素的数组
-优先级运行队列将同等优先级的线程放到同一个数组，而运行队列则是优先级数组的数组
-续体为降低切换线程消耗资源而设计的数据结构，里面包含了线程的状态以及入口，当线程切换时候，调度器找到目标线程的续体，然后从续体恢复状态，进入线程。
-抢占模式
-显示抢占：线程自己管理自己对资源的占用，即，自己管理自己在什么让出CPU，或者什么时候占用C">
-<meta property="og:updated_time" content="2016-10-18T13:03:55.000Z">
+<meta property="og:description" content="通常我们开发的app的UI元素都是有一个个view对堆叠起来的，也就是说我们点击屏幕的某一个区域的时候，会触动所有包含这个区域的view。那么这个触摸事件该由哪个View来处理，或者我们想更改iOS默认的处理方式又该如何下手，我们就需要先了解iOS中的事件是如何分发以及如何响应的。接下来介绍的是从官方文档精选出来的一部内容并加以了说明。
+事件分发当用户触发一个事件，UIKit会创建一个对应的对象来">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/hit_testing_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/iOS_responder_chain_2x.png">
+<meta property="og:updated_time" content="2016-10-27T09:30:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mach调度">
-<meta name="twitter:description" content="线程线程是个结构体
-任务（task）线程的容器，是以线程为元素的数组
-优先级运行队列将同等优先级的线程放到同一个数组，而运行队列则是优先级数组的数组
-续体为降低切换线程消耗资源而设计的数据结构，里面包含了线程的状态以及入口，当线程切换时候，调度器找到目标线程的续体，然后从续体恢复状态，进入线程。
-抢占模式
-显示抢占：线程自己管理自己对资源的占用，即，自己管理自己在什么让出CPU，或者什么时候占用C">
+<meta name="twitter:title" content="iOS的事件处理顺序">
+<meta name="twitter:description" content="通常我们开发的app的UI元素都是有一个个view对堆叠起来的，也就是说我们点击屏幕的某一个区域的时候，会触动所有包含这个区域的view。那么这个触摸事件该由哪个View来处理，或者我们想更改iOS默认的处理方式又该如何下手，我们就需要先了解iOS中的事件是如何分发以及如何响应的。接下来介绍的是从官方文档精选出来的一部内容并加以了说明。
+事件分发当用户触发一个事件，UIKit会创建一个对应的对象来">
+<meta name="twitter:image" content="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/hit_testing_2x.png">
 
 
 
@@ -129,10 +120,10 @@
 
 
 
-  <link rel="canonical" href="https://github.com/Easence/2016/08/30/Mach调度/"/>
+  <link rel="canonical" href="https://github.com/Easence/2016/10/27/TheResponderChain/"/>
 
 
-  <title> Mach调度 | EA88'Blog </title>
+  <title> iOS的事件处理顺序 | EA88'Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -269,7 +260,7 @@
             
             
               
-                Mach调度
+                iOS的事件处理顺序
               
             
           </h1>
@@ -281,8 +272,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-30T10:12:09+08:00" content="2016-08-30">
-              2016-08-30
+            <time itemprop="dateCreated" datetime="2016-10-27T17:23:51+08:00" content="2016-10-27">
+              2016-10-27
             </time>
           </span>
 
@@ -295,20 +286,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Apple-Development/" itemprop="url" rel="index">
-                    <span itemprop="name">Apple Development</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Apple-Development/深入解析Mac-OS-X-iOS操作系统笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">深入解析Mac OS X && iOS操作系统笔记</span>
+                  <a href="/categories/iOS开发笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发笔记</span>
                   </a>
                 </span>
 
@@ -340,19 +319,22 @@
       
 
       
-        <h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><p>线程是个结构体</p>
-<h2 id="任务（task）"><a href="#任务（task）" class="headerlink" title="任务（task）"></a>任务（task）</h2><p>线程的容器，是以线程为元素的数组</p>
-<h2 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h2><h2 id="运行队列"><a href="#运行队列" class="headerlink" title="运行队列"></a>运行队列</h2><p>将同等优先级的线程放到同一个数组，而运行队列则是优先级数组的数组</p>
-<h2 id="续体"><a href="#续体" class="headerlink" title="续体"></a>续体</h2><p>为降低切换线程消耗资源而设计的数据结构，里面包含了线程的状态以及入口，当线程切换时候，调度器找到目标线程的续体，然后从续体恢复状态，进入线程。</p>
-<h2 id="抢占模式"><a href="#抢占模式" class="headerlink" title="抢占模式"></a>抢占模式</h2><ul>
-<li>显示抢占：线程自己管理自己对资源的占用，即，自己管理自己在什么让出CPU，或者什么时候占用CPU。缺点:</li>
-<li>隐式抢占：调度器管理线程的执行。<h2 id="异步软件陷阱（AST）"><a href="#异步软件陷阱（AST）" class="headerlink" title="异步软件陷阱（AST）"></a>异步软件陷阱（AST）</h2></li>
-</ul>
-<h2 id="定时器中断"><a href="#定时器中断" class="headerlink" title="定时器中断"></a>定时器中断</h2><p>软件定时器：<br>硬件定时器：</p>
-<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><ul>
-<li>每个task可以注册一个异常处理端口A，如果它的子线程没有注册异常处理端口，那么它的所有线程的的异常都将抛到端口A。</li>
-<li>异常消息分发顺序：<br>1、检查线程是否注册了异常处理端口，有则线程数理。完成。<br>2、检查task时候注册异常处理端口，有则task处理。完成。<br>3、检查远端server时候有注册异常处理端口，有则远端server处理。完成。<br>4、如果都没有注册异常处理端口，则crash。</li>
-</ul>
+        <p>通常我们开发的app的UI元素都是有一个个view对堆叠起来的，也就是说我们点击屏幕的某一个区域的时候，会触动所有包含这个区域的view。那么这个触摸事件该由哪个View来处理，或者我们想更改iOS默认的处理方式又该如何下手，我们就需要先了解iOS中的事件是如何分发以及如何响应的。接下来介绍的是从官方文档精选出来的一部内容并加以了说明。</p>
+<h2 id="事件分发"><a href="#事件分发" class="headerlink" title="事件分发"></a>事件分发</h2><p>当用户触发一个事件，UIKit会创建一个对应的对象来表示该事件（比如：触摸事件：UIEvent），并把该事件对象传递给app的事件队列里面，然后由UIApplication的单列从队首取出一个事件，通常会分发到UIWindow，再由UIWindow传递到下一个responder，直到找到一个能相应该事件的responder为止(对于触摸事件，通常就是hit-test View)。例如：</p>
+<p><img src="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/hit_testing_2x.png" alt="Hit-testing returns the subview that was touched"></p>
+<p>假设点击了View E。那么这个触摸事件传递的顺序是这样子的：</p>
+<ol>
+<li>由于触摸的区域在最外层的A之内，所以会检查它的子view B跟C。</li>
+<li>由于触摸区域在C内，因此会检查它的子view D和E。</li>
+<li>最后由于该触摸区域在E内，并且E是最顶层的View，因此它会成为hit-test view。</li>
+</ol>
+<h2 id="事件响应链"><a href="#事件响应链" class="headerlink" title="事件响应链"></a>事件响应链</h2><p>事件响应的顺序跟事件分发的顺序是相反的。通常事件首先都是由first responder处理的，如果它不想处理，则交由它的nextResponder处理，此时该responder就变成了first responder，反复如此，直到有一个responder愿意处理，如果到了最后都没有responder处理，则丢弃该事件。UIApplication, UIViewController以及UIView都是responder（都是UIResponder的子类）。</p>
+<p><img src="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/iOS_responder_chain_2x.png" alt="The responder chain on iOS"></p>
+<p>由上图可以看出，事件处理的的优先级从高到低，大概是这样子的：</p>
+<p><strong>view</strong> -&gt; <strong>view’superView</strong> -&gt; … -&gt; <strong>viewController</strong> -&gt; <strong>window</strong> -&gt; <strong>application</strong></p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>至此，我们已经知道了iOS是如何处理事件，我们大致可以将这个过程分为两部分：事件分发以及事件响应，这两个过程的顺序是相反的。对于一个app来说，事件分发，就是从application开始找到一个最上面的view或者controller来处理事件。如果最上面的view不愿意处理，就进入事件响应的流程，会将这个事件一直往下抛，直到找到一个愿意处理的view或者controller，如果大家都不愿处理，就丢弃这个事件。</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/event_delivery_responder_chain/event_delivery_responder_chain.html" target="_blank" rel="external">Event Delivery: The Responder Chain</a></p>
+<hr>
 
       
     </div>
@@ -375,7 +357,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Mach/" rel="tag">#Mach</a>
+            <a href="/tags/事件响应链/" rel="tag">#事件响应链</a>
           
         </div>
       
@@ -384,17 +366,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/30/文件系统和虚拟文件系统交换（VFS）/" rel="next" title="文件系统和虚拟文件系统交换（VFS）">
-                <i class="fa fa-chevron-left"></i> 文件系统和虚拟文件系统交换（VFS）
+              <a href="/2016/10/23/高效学习法/" rel="next" title="高效学习法">
+                <i class="fa fa-chevron-left"></i> 高效学习法
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/01/引导过程：EFI和iBoot/" rel="prev" title="引导过程：EFI和iBoot">
-                引导过程：EFI和iBoot <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -528,7 +506,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#线程"><span class="nav-number">1.</span> <span class="nav-text">线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#任务（task）"><span class="nav-number">2.</span> <span class="nav-text">任务（task）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优先级"><span class="nav-number">3.</span> <span class="nav-text">优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行队列"><span class="nav-number">4.</span> <span class="nav-text">运行队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#续体"><span class="nav-number">5.</span> <span class="nav-text">续体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抢占模式"><span class="nav-number">6.</span> <span class="nav-text">抢占模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步软件陷阱（AST）"><span class="nav-number">7.</span> <span class="nav-text">异步软件陷阱（AST）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定时器中断"><span class="nav-number">8.</span> <span class="nav-text">定时器中断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常"><span class="nav-number">9.</span> <span class="nav-text">异常</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#事件分发"><span class="nav-number">1.</span> <span class="nav-text">事件分发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件响应链"><span class="nav-number">2.</span> <span class="nav-text">事件响应链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">3.</span> <span class="nav-text">最后</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文档"><span class="nav-number">4.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
             
           </div>
         </section>
