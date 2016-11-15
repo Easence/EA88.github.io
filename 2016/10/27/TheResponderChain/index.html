@@ -84,21 +84,18 @@
 
 
 
-<meta name="description" content="通常我们开发的app的UI元素都是有一个个view对堆叠起来的，也就是说我们点击屏幕的某一个区域的时候，会触动所有包含这个区域的view。那么这个触摸事件该由哪个View来处理，或者我们想更改iOS默认的处理方式又该如何下手，我们就需要先了解iOS中的事件是如何分发以及如何响应的。接下来介绍的是从官方文档精选出来的一部内容并加以了说明。
-事件分发当用户触发一个事件，UIKit会创建一个对应的对象来">
+<meta name="description" content="通常我们开发的app的UI元素都是有一个个view对堆叠起来的，也就是说我们点击屏幕的某一个区域的时候，会触动所有包含这个区域的view。那么这个触摸事件该由哪个View来处理，或者我们想更改iOS默认的处理方式又该如何下手，我们就需要先了解iOS中的事件是如何分发以及如何响应的。接下来介绍的是从官方文档精选出来的一部内容并加以了说明。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS的事件处理顺序">
 <meta property="og:url" content="https://github.com/Easence/2016/10/27/TheResponderChain/index.html">
 <meta property="og:site_name" content="EA88'Blog">
-<meta property="og:description" content="通常我们开发的app的UI元素都是有一个个view对堆叠起来的，也就是说我们点击屏幕的某一个区域的时候，会触动所有包含这个区域的view。那么这个触摸事件该由哪个View来处理，或者我们想更改iOS默认的处理方式又该如何下手，我们就需要先了解iOS中的事件是如何分发以及如何响应的。接下来介绍的是从官方文档精选出来的一部内容并加以了说明。
-事件分发当用户触发一个事件，UIKit会创建一个对应的对象来">
+<meta property="og:description" content="通常我们开发的app的UI元素都是有一个个view对堆叠起来的，也就是说我们点击屏幕的某一个区域的时候，会触动所有包含这个区域的view。那么这个触摸事件该由哪个View来处理，或者我们想更改iOS默认的处理方式又该如何下手，我们就需要先了解iOS中的事件是如何分发以及如何响应的。接下来介绍的是从官方文档精选出来的一部内容并加以了说明。">
 <meta property="og:image" content="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/hit_testing_2x.png">
 <meta property="og:image" content="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/iOS_responder_chain_2x.png">
-<meta property="og:updated_time" content="2016-10-27T11:42:11.000Z">
+<meta property="og:updated_time" content="2016-11-15T07:07:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS的事件处理顺序">
-<meta name="twitter:description" content="通常我们开发的app的UI元素都是有一个个view对堆叠起来的，也就是说我们点击屏幕的某一个区域的时候，会触动所有包含这个区域的view。那么这个触摸事件该由哪个View来处理，或者我们想更改iOS默认的处理方式又该如何下手，我们就需要先了解iOS中的事件是如何分发以及如何响应的。接下来介绍的是从官方文档精选出来的一部内容并加以了说明。
-事件分发当用户触发一个事件，UIKit会创建一个对应的对象来">
+<meta name="twitter:description" content="通常我们开发的app的UI元素都是有一个个view对堆叠起来的，也就是说我们点击屏幕的某一个区域的时候，会触动所有包含这个区域的view。那么这个触摸事件该由哪个View来处理，或者我们想更改iOS默认的处理方式又该如何下手，我们就需要先了解iOS中的事件是如何分发以及如何响应的。接下来介绍的是从官方文档精选出来的一部内容并加以了说明。">
 <meta name="twitter:image" content="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/hit_testing_2x.png">
 
 
