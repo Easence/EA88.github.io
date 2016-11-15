@@ -5,10 +5,10 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -63,7 +63,7 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
@@ -148,9 +148,10 @@
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Muse',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
@@ -158,20 +159,29 @@
     duoshuo: {
       userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
     }
   };
 </script>
 
 
 
-
   <link rel="canonical" href="https://github.com/Easence/2016/08/30/读书笔记之《如何阅读一本书》/"/>
+
+
+
 
 
   <title> 读书笔记之《如何阅读一本书》 | EA88'Blog </title>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -192,7 +202,7 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta custom-logo">
   
     <div class="site-meta-headline">
@@ -275,6 +285,8 @@
   
 </nav>
 
+
+
  </div>
     </header>
 
@@ -288,13 +300,26 @@
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://github.com/Easence/2016/08/30/读书笔记之《如何阅读一本书》/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="EA88">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="EA88'Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="EA88'Blog" src="/images/avatar.jpg">
+    </span>
+  </span>
 
     
       <header class="post-header">
@@ -313,34 +338,13 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-30T09:57:32+08:00" content="2016-08-30">
-              2016-08-30
-            </time>
+            
+
+            
+
+            
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/方法论/" itemprop="url" rel="index">
-                    <span itemprop="name">方法论</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
@@ -353,6 +357,9 @@
           
 
           
+
+          
+
         </div>
       </header>
     
@@ -434,11 +441,12 @@
       
     </div>
 
+
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/学习方法/" rel="tag">#学习方法</a>
+            <a href="/tags/学习方法/" rel="tag"># 学习方法</a>
           
         </div>
       
@@ -452,6 +460,8 @@
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -514,8 +524,8 @@
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
                alt="EA88" />
@@ -582,19 +592,27 @@
         
         
 
+        
+
+
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#阅读的四个层次"><span class="nav-number">1.</span> <span class="nav-text">阅读的四个层次</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础阅读（四个阶段）"><span class="nav-number">2.</span> <span class="nav-text">基础阅读（四个阶段）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检视阅读（如何做）"><span class="nav-number">3.</span> <span class="nav-text">检视阅读（如何做）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阅读过程中尝试提出问题并回答，比如：回答下面几个问题"><span class="nav-number">4.</span> <span class="nav-text">阅读过程中尝试提出问题并回答，比如：回答下面几个问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何让你本书成为你自己的"><span class="nav-number">5.</span> <span class="nav-text">如何让你本书成为你自己的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#书的分类"><span class="nav-number">6.</span> <span class="nav-text">书的分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析阅读"><span class="nav-number">7.</span> <span class="nav-text">分析阅读</span></a></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
       
 
     </div>
@@ -617,16 +635,7 @@
   <span class="author" itemprop="copyrightHolder">EA88</span>
 </div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
-  </a>
-</div>
 
         
 
@@ -712,6 +721,11 @@
 
 
 
+	
+
+
+
+
   
   
 
@@ -720,6 +734,9 @@
   
 
   
+
+  
+
 
 </body>
 </html>

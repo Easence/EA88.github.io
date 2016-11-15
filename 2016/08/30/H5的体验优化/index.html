@@ -5,10 +5,10 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -63,7 +63,7 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
@@ -130,9 +130,10 @@ webView的加载需要耗时，网络建立连接也需要时间。
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Muse',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
@@ -140,20 +141,29 @@ webView的加载需要耗时，网络建立连接也需要时间。
     duoshuo: {
       userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
     }
   };
 </script>
 
 
 
-
   <link rel="canonical" href="https://github.com/Easence/2016/08/30/H5的体验优化/"/>
+
+
+
 
 
   <title> H5的体验优化 | EA88'Blog </title>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -174,7 +184,7 @@ webView的加载需要耗时，网络建立连接也需要时间。
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta custom-logo">
   
     <div class="site-meta-headline">
@@ -257,6 +267,8 @@ webView的加载需要耗时，网络建立连接也需要时间。
   
 </nav>
 
+
+
  </div>
     </header>
 
@@ -270,13 +282,26 @@ webView的加载需要耗时，网络建立连接也需要时间。
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://github.com/Easence/2016/08/30/H5的体验优化/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="EA88">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="EA88'Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="EA88'Blog" src="/images/avatar.jpg">
+    </span>
+  </span>
 
     
       <header class="post-header">
@@ -295,34 +320,13 @@ webView的加载需要耗时，网络建立连接也需要时间。
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-30T10:04:48+08:00" content="2016-08-30">
-              2016-08-30
-            </time>
+            
+
+            
+
+            
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index">
-                    <span itemprop="name">Web</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
@@ -335,6 +339,9 @@ webView的加载需要耗时，网络建立连接也需要时间。
           
 
           
+
+          
+
         </div>
       </header>
     
@@ -390,13 +397,14 @@ webView的加载需要耗时，网络建立连接也需要时间。
       
     </div>
 
+
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/H5/" rel="tag">#H5</a>
+            <a href="/tags/H5/" rel="tag"># H5</a>
           
-            <a href="/tags/JS/" rel="tag">#JS</a>
+            <a href="/tags/JS/" rel="tag"># JS</a>
           
         </div>
       
@@ -410,6 +418,8 @@ webView的加载需要耗时，网络建立连接也需要时间。
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -472,8 +482,8 @@ webView的加载需要耗时，网络建立连接也需要时间。
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
                alt="EA88" />
@@ -540,19 +550,27 @@ webView的加载需要耗时，网络建立连接也需要时间。
         
         
 
+        
+
+
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#H5跟Native的性能对比"><span class="nav-number">1.</span> <span class="nav-text">H5跟Native的性能对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未采用的优化H5的方案"><span class="nav-number">2.</span> <span class="nav-text">未采用的优化H5的方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比较好的优化方案"><span class="nav-number">3.</span> <span class="nav-text">比较好的优化方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进一步优化"><span class="nav-number">4.</span> <span class="nav-text">进一步优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-Native"><span class="nav-number">5.</span> <span class="nav-text">React Native</span></a></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
       
 
     </div>
@@ -575,16 +593,7 @@ webView的加载需要耗时，网络建立连接也需要时间。
   <span class="author" itemprop="copyrightHolder">EA88</span>
 </div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
-  </a>
-</div>
 
         
 
@@ -670,6 +679,11 @@ webView的加载需要耗时，网络建立连接也需要时间。
 
 
 
+	
+
+
+
+
   
   
 
@@ -678,6 +692,9 @@ webView的加载需要耗时，网络建立连接也需要时间。
   
 
   
+
+  
+
 
 </body>
 </html>

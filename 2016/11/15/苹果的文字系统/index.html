@@ -5,10 +5,10 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -63,7 +63,7 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
@@ -106,9 +106,10 @@
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Muse',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
@@ -116,20 +117,29 @@
     duoshuo: {
       userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
     }
   };
 </script>
 
 
 
-
   <link rel="canonical" href="https://github.com/Easence/2016/11/15/苹果的文字系统/"/>
+
+
+
 
 
   <title> 苹果文字系统 | EA88'Blog </title>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -150,7 +160,7 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta custom-logo">
   
     <div class="site-meta-headline">
@@ -233,6 +243,8 @@
   
 </nav>
 
+
+
  </div>
     </header>
 
@@ -246,13 +258,26 @@
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://github.com/Easence/2016/11/15/苹果的文字系统/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="EA88">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="EA88'Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="EA88'Blog" src="/images/avatar.jpg">
+    </span>
+  </span>
 
     
       <header class="post-header">
@@ -271,34 +296,13 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-15T10:33:17+08:00" content="2016-11-15">
-              2016-11-15
-            </time>
+            
+
+            
+
+            
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS开发笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS开发笔记</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
@@ -311,6 +315,13 @@
           
 
           
+
+          
+              <div class="post-description">
+                  对苹果关于文字处理部分的官方文档进行了总结，基本上涵盖了iOS开发中关于Text的所需了解的知识。
+              </div>
+          
+
         </div>
       </header>
     
@@ -408,11 +419,12 @@
       
     </div>
 
+
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/CoreText/" rel="tag">#CoreText</a>
+            <a href="/tags/CoreText/" rel="tag"># CoreText</a>
           
         </div>
       
@@ -426,6 +438,8 @@
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -484,8 +498,8 @@
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
                alt="EA88" />
@@ -552,19 +566,27 @@
         
         
 
+        
+
+
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#整体架构"><span class="nav-number">1.</span> <span class="nav-text">整体架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文字排版知识"><span class="nav-number">2.</span> <span class="nav-text">文字排版知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Text-Kit"><span class="nav-number">3.</span> <span class="nav-text">Text Kit</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Text-Kit中的主要对象"><span class="nav-number">3.1.</span> <span class="nav-text">Text Kit中的主要对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#直接绘制文字"><span class="nav-number">4.</span> <span class="nav-text">直接绘制文字</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NSString的UIStringDrawing-category"><span class="nav-number">4.1.</span> <span class="nav-text">NSString的UIStringDrawing category</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CATextLayer"><span class="nav-number">4.2.</span> <span class="nav-text">CATextLayer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Core-Text"><span class="nav-number">4.3.</span> <span class="nav-text">Core Text</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Layout-engine"><span class="nav-number">4.3.1.</span> <span class="nav-text">Layout engine</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Core-Text-Font-Opaque-Types"><span class="nav-number">4.3.2.</span> <span class="nav-text">Core Text Font Opaque Types</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义可与键盘交互的Text-View"><span class="nav-number">5.</span> <span class="nav-text">自定义可与键盘交互的Text View</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文档："><span class="nav-number">6.</span> <span class="nav-text">参考文档：</span></a></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
       
 
     </div>
@@ -587,16 +609,7 @@
   <span class="author" itemprop="copyrightHolder">EA88</span>
 </div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
-  </a>
-</div>
 
         
 
@@ -682,6 +695,11 @@
 
 
 
+	
+
+
+
+
   
   
 
@@ -690,6 +708,9 @@
   
 
   
+
+  
+
 
 </body>
 </html>

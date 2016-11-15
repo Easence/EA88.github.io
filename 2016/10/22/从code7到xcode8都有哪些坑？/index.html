@@ -5,10 +5,10 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -63,7 +63,7 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
@@ -97,9 +97,10 @@
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Muse',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
@@ -107,20 +108,29 @@
     duoshuo: {
       userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
     }
   };
 </script>
 
 
 
-
   <link rel="canonical" href="https://github.com/Easence/2016/10/22/从code7到xcode8都有哪些坑？/"/>
+
+
+
 
 
   <title> 从code7到xcode8都有哪些坑? | EA88'Blog </title>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -141,7 +151,7 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta custom-logo">
   
     <div class="site-meta-headline">
@@ -224,6 +234,8 @@
   
 </nav>
 
+
+
  </div>
     </header>
 
@@ -237,13 +249,26 @@
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://github.com/Easence/2016/10/22/从code7到xcode8都有哪些坑？/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="EA88">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="EA88'Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="EA88'Blog" src="/images/avatar.jpg">
+    </span>
+  </span>
 
     
       <header class="post-header">
@@ -262,46 +287,13 @@
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-22T10:08:17+08:00" content="2016-10-22">
-              2016-10-22
-            </time>
+            
+
+            
+
+            
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Apple-Development/" itemprop="url" rel="index">
-                    <span itemprop="name">Apple Development</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Apple-Development/iOS开发笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS开发笔记</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
@@ -314,6 +306,13 @@
           
 
           
+
+          
+              <div class="post-description">
+                  自从有那段使用beta版本的Mac OSX系统，导致机器时常开机卡死的经历之后，就尽量不敢在第一时间使用苹果的beta版系统。但是，由于自己是名iOS开发者，当Xcode出了beta版本无疑是需要第一时间体验一下的，即使Xcode beta版本可以不体验，但是出了第一个Release版本却是不得不更新。接下来讲的就是在使用Xcode8.0所遇到的坑。
+              </div>
+          
+
         </div>
       </header>
     
@@ -355,6 +354,7 @@
       
     </div>
 
+
     <footer class="post-footer">
       
 
@@ -367,6 +367,8 @@
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -429,8 +431,8 @@
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
                alt="EA88" />
@@ -497,19 +499,27 @@
         
         
 
+        
+
+
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#冲动的惩罚"><span class="nav-number">1.</span> <span class="nav-text">冲动的惩罚</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#坑与填平坑"><span class="nav-number">2.</span> <span class="nav-text">坑与填平坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Storyboard"><span class="nav-number">2.1.</span> <span class="nav-text">Storyboard</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#所有UI控件的宽高设定了同一个初始值：1000。"><span class="nav-number">2.1.1.</span> <span class="nav-text">所有UI控件的宽高设定了同一个初始值：1000。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cornerRadius"><span class="nav-number">2.1.2.</span> <span class="nav-text">cornerRadius</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TableView-static-cells"><span class="nav-number">2.1.3.</span> <span class="nav-text">TableView static cells</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不支持iOS7，却可以提交iOS7应用"><span class="nav-number">2.1.4.</span> <span class="nav-text">不支持iOS7，却可以提交iOS7应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#卡卡卡"><span class="nav-number">2.1.5.</span> <span class="nav-text">卡卡卡</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">3.</span> <span class="nav-text">最后</span></a></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
       
 
     </div>
@@ -532,16 +542,7 @@
   <span class="author" itemprop="copyrightHolder">EA88</span>
 </div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
-  </a>
-</div>
 
         
 
@@ -627,6 +628,11 @@
 
 
 
+	
+
+
+
+
   
   
 
@@ -635,6 +641,9 @@
   
 
   
+
+  
+
 
 </body>
 </html>
