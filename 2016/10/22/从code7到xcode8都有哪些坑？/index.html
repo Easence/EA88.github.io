@@ -1,17 +1,86 @@
-<!DOCTYPE html>
-<html lang="zh-Hans">
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-    <!--[if lt IE 9]>
-        <style>body {display: none; background: none !important} </style>
-        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
-    <![endif]-->
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="format-detection" content="telephone=no" />
-<meta name="author" content="EA88" />
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
 
 
 
@@ -26,278 +95,272 @@
 <meta name="twitter:title" content="从code7到xcode8都有哪些坑?">
 <meta name="twitter:description" content="自从有那段使用beta版本的Mac OSX系统，导致机器时常开机卡死的经历之后，就尽量不敢在第一时间使用苹果的beta版系统。但是，由于自己是名iOS开发者，当Xcode出了beta版本无疑是需要第一时间体验一下的，即使Xcode beta版本可以不体验，但是出了第一个Release版本却是不得不更新。接下来讲的就是在使用Xcode8.0所遇到的坑。">
 
-<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
 
-    <link rel="alternate" href="/atom.xml" title="EA88&#39;Blog" type="application/atom+xml">
-
-
-
-    <link rel="shortcut icon" href="/favicon.png">
-
-
-
-
-
-    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
-
-
-
-    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
-    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
-
-
-<link rel="stylesheet" href="/css/style.css">
-
-
-
-<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-
-
-<title>从code7到xcode8都有哪些坑? | EA88&#39;Blog</title>
-
-<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
-
-<script>
-    var yiliaConfig = {
-        fancybox: true,
-        animate: false,
-        isHome: false,
-        isPost: true,
-        isArchive: false,
-        isTag: false,
-        isCategory: false,
-        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
-        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
-        search: undefined
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
+  };
 </script>
 
 
-    <script> yiliaConfig.jquery_ui = [false]; </script>
 
-
-
-    <script> yiliaConfig.rootUrl = "\/";</script>
-
+  <link rel="canonical" href="https://github.com/Easence/2016/10/22/从code7到xcode8都有哪些坑？/"/>
 
 
 
 
 
+  <title> 从code7到xcode8都有哪些坑? | EA88'Blog </title>
 </head>
-<body>
-  <div id="container">
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-    <header id="header" class="inner">
-        <a href="/" class="profilepic">
-            <img src="/img/avatar.jpg" class="animated zoomIn">
-        </a>
-        <hgroup>
-          <h1 class="header-author"><a href="/">EA88</a></h1>
-        </hgroup>
 
-        
-        <p class="header-subtitle">见自己、见天地、见众生</p>
-        
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-        
+  
 
 
-        
-            <div id="switch-btn" class="switch-btn">
-                <div class="icon">
-                    <div class="icon-ctn">
-                        <div class="icon-wrap icon-house" data-idx="0">
-                            <div class="birdhouse"></div>
-                            <div class="birdhouse_holes"></div>
-                        </div>
-                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
-                            <div class="ribbon"></div>
-                        </div>
-                        
-                        <div class="icon-wrap icon-link hide" data-idx="2">
-                            <div class="loopback_l"></div>
-                            <div class="loopback_r"></div>
-                        </div>
-                        
-                        
-                        <div class="icon-wrap icon-me hide" data-idx="3">
-                            <div class="user"></div>
-                            <div class="shoulder"></div>
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-                <div class="tips-box hide">
-                    <div class="tips-arrow"></div>
-                    <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
-                        
-                        <li>友情链接</li>
-                        
-                        
-                        <li>关于我</li>
-                        
-                    </ul>
-                </div>
-            </div>
-        
 
-        <div id="switch-area" class="switch-area">
-            <div class="switch-wrap">
-                <section class="switch-part switch-part1">
-                    <nav class="header-menu">
-                        <ul>
-                        
-                            <li><a href="/">主页</a></li>
-                        
-                            <li><a href="/archives/">所有文章</a></li>
-                        
-                            <li><a href="/tags/">标签云</a></li>
-                        
-                            <li><a href="/about/">关于我</a></li>
-                        
-                        </ul>
-                    </nav>
-                    <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
-                            
-                                <a class="fa GitHub" href="#" title="GitHub"></a>
-                            
-                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
-                            
-                        </ul>
-                    </nav>
-                </section>
-                
-                
-                <section class="switch-part switch-part2">
-                    <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cocoapods/">Cocoapods</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CoreText/">CoreText</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/H5/">H5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mach/">Mach</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XNU/">XNU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/launchd/">launchd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事件响应链/">事件响应链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内核/">内核</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内核架构/">内核架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习方法/">学习方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全/">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/引导过程/">引导过程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件系统/">文件系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络/">网络</a></li></ul>
-                    </div>
-                </section>
-                
-                
-                
-                <section class="switch-part switch-part3">
-                    <div id="js-friends">
-                    
-                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
-                    
-                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
-                    
-                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
-                    
-                    </div>
-                </section>
-                
 
-                
-                
-                <section class="switch-part switch-part4">
-                
-                    <div id="js-aboutme">专注于前端</div>
-                </section>
-                
-            </div>
-        </div>
-    </header>                
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+    <div class="site-meta-headline">
+      <a>
+        <img class="custom-logo-image" src="/images/avatar.jpg"
+             alt="EA88'Blog"/>
+      </a>
+    </div>
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EA88'Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">见自己、见天地、见众生</p>
 </div>
-    </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-      <div class="overlay">
-          <div class="slider-trigger"></div>
-          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">EA88</a></h1>
-      </div>
-    <div class="intrude-less">
-        <header id="header" class="inner">
-            <a href="/" class="profilepic">
-                <img src="/img/avatar.jpg" class="animated zoomIn">
-            </a>
-            <hgroup>
-              <h1 class="header-author"><a href="/" title="回到主页">EA88</a></h1>
-            </hgroup>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
             
-            <p class="header-subtitle">见自己、见天地、见众生</p>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            <nav class="header-menu">
-                <ul>
-                
-                    <li><a href="/">主页</a></li>
-                
-                    <li><a href="/archives/">所有文章</a></li>
-                
-                    <li><a href="/tags/">标签云</a></li>
-                
-                    <li><a href="/about/">关于我</a></li>
-                
-                <div class="clearfix"></div>
-                </ul>
-            </nav>
-            <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
-                            
-                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
-                            
-                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
-                            
-                        </ul>
-            </nav>
-        </header>                
-    </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
 </nav>
-      <div class="body-wrap"><article id="post-从code7到xcode8都有哪些坑？" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/22/从code7到xcode8都有哪些坑？/" class="article-date">
-      <time datetime="2016-10-22T02:08:17.000Z" itemprop="datePublished">2016-10-22</time>
-</a>
 
 
-    </div>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
   
-  <div class="article-inner">
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://github.com/Easence/2016/10/22/从code7到xcode8都有哪些坑？/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="EA88">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="EA88'Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="EA88'Blog" src="/images/avatar.jpg">
+    </span>
+  </span>
+
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 class="article-title" itemprop="name">
-      从code7到xcode8都有哪些坑?
-    </h1>
-  
-
-      </header>
-      
-      <div class="article-info article-info-post">
         
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Apple-Development/">Apple Development</a><a class="article-category-link" href="/categories/Apple-Development/iOS开发笔记/">iOS开发笔记</a>
-    </div>
-
-
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                从code7到xcode8都有哪些坑?
+              
+            
+          </h1>
         
-        <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-22T10:08:17+08:00">
+                2016-10-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Apple-Development/" itemprop="url" rel="index">
+                    <span itemprop="name">Apple Development</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Apple-Development/iOS开发笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+              <div class="post-description">
+                  自从有那段使用beta版本的Mac OSX系统，导致机器时常开机卡死的经历之后，就尽量不敢在第一时间使用苹果的beta版系统。但是，由于自己是名iOS开发者，当Xcode出了beta版本无疑是需要第一时间体验一下的，即使Xcode beta版本可以不体验，但是出了第一个Release版本却是不得不更新。接下来讲的就是在使用Xcode8.0所遇到的坑。
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
         <h2 id="冲动的惩罚"><a href="#冲动的惩罚" class="headerlink" title="冲动的惩罚"></a>冲动的惩罚</h2><p>自从有那段使用beta版本的Mac OSX系统，导致机器时常开机卡死的经历之后，就尽量不敢在第一时间使用苹果的beta版系统。但是，由于自己是名iOS开发者，当Xcode出了beta版本无疑是需要第一时间体验一下的，即使Xcode beta版本可以不体验，但是出了第一个Release版本却是不得不更新。接下来讲的就是在使用Xcode8.0所遇到的坑。</p>
 <h2 id="坑与填平坑"><a href="#坑与填平坑" class="headerlink" title="坑与填平坑"></a>坑与填平坑</h2><h3 id="Storyboard"><a href="#Storyboard" class="headerlink" title="Storyboard"></a>Storyboard</h3><p>对于Storyboard相信大家对它都不陌生，自从iOS5之后就开始支持了，是一种可视化开发组件。本人使用过Android、Windows Phone以及iOS的可视化组件，可以说Storyboard是这三个平台中最流畅、最好用的可视化开发组件，采用StoryBoard虽然会比纯代码写UI效率上会有那么一点损耗，但对于一般的应用，在开发之初它确实可以大大的提高开发效率、也易于维护（可以想想当年那些不采用Storyboard编写的代码，即使更改一个坐标位置都是极其痛苦的），可以说是利大于弊。但是就在最近升级到Xcode8之后，发现StoryBoard有如下几点变动（坑）。</p>
 <h4 id="所有UI控件的宽高设定了同一个初始值：1000。"><a href="#所有UI控件的宽高设定了同一个初始值：1000。" class="headerlink" title="所有UI控件的宽高设定了同一个初始值：1000。"></a>所有UI控件的宽高设定了同一个初始值：1000。</h4><p>在Xcode7的时候，StoryBoard生成的UI控件的默认宽高都是3.5英寸的宽高。采用自动布局时，在load完Storyboard之后，读取到UI控件的宽虽然不正确，但是大部分情况下高却是我们想要的，并且由于宽是320，是小于等于任何尺寸的宽，所以在UI渲染上并没有可见性的问题。<br>但是对于Xcode8则不同，只要是通过Storyboard生成的UI都是统一给定一个固定值：1000。在load完Storyboard之后，自动布局计算完高度之前，读出来的宽高都是1000。这就导致原先所有依赖于bounds计算位置宽高，没有任何问题的UI展示逻辑，采用Xcode8一编译就乱套了，比如会看到：图片无故拉长后再恢复原状，原先好好的布局出现了UI重叠在一起，有的UI甚至刷新不出来等。解决的办法主要有两个：</p>
@@ -313,214 +376,322 @@
 
       
     </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/16/Mach-O格式文件(用户态下的进程加载)/" rel="next" title="Mach-O格式文件(用户态下的进程加载)">
+                <i class="fa fa-chevron-left"></i> Mach-O格式文件(用户态下的进程加载)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/23/高效学习法/" rel="prev" title="高效学习法">
+                高效学习法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
     
   </div>
-  
-    
-    <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/10/22/从code7到xcode8都有哪些坑？/">从code7到xcode8都有哪些坑?</a></p>
-        <p><span>文章作者:</span><a href="/" title="回到主页">EA88</a></p>
-        <p><span>发布时间:</span>2016-10-22, 10:08:17</p>
-        <p><span>最后更新:</span>2016-11-15, 15:08:38</p>
-        <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/10/22/从code7到xcode8都有哪些坑？/" title="从code7到xcode8都有哪些坑?">https://github.com/Easence/2016/10/22/从code7到xcode8都有哪些坑？/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://github.com/Easence/2016/10/22/从code7到xcode8都有哪些坑？/　　作者: EA88" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
-            <script> var clipboard = new Clipboard('.copy-path'); </script>
-        </p>
-        <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
-        </p>
-    </div>
 
 
-
-    <nav id="article-nav">
-        
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/10/23/高效学习法/">
-                    高效学习法
-                </a>
-            </div>
-        
-        
-            <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/09/16/Mach-O格式文件(用户态下的进程加载)/">
-                    Mach-O格式文件(用户态下的进程加载)
-                </a>
-            </div>
-        
-    </nav>
-
-  
-</article>
-
-    <div id="toc" class="toc-article">
-        <strong class="toc-title">文章目录</strong>
-        
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#冲动的惩罚"><span class="toc-number">1.</span> <span class="toc-text">冲动的惩罚</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#坑与填平坑"><span class="toc-number">2.</span> <span class="toc-text">坑与填平坑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Storyboard"><span class="toc-number">2.1.</span> <span class="toc-text">Storyboard</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#所有UI控件的宽高设定了同一个初始值：1000。"><span class="toc-number">2.1.1.</span> <span class="toc-text">所有UI控件的宽高设定了同一个初始值：1000。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cornerRadius"><span class="toc-number">2.1.2.</span> <span class="toc-text">cornerRadius</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TableView-static-cells"><span class="toc-number">2.1.3.</span> <span class="toc-text">TableView static cells</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#不支持iOS7，却可以提交iOS7应用"><span class="toc-number">2.1.4.</span> <span class="toc-text">不支持iOS7，却可以提交iOS7应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卡卡卡"><span class="toc-number">2.1.5.</span> <span class="toc-text">卡卡卡</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">3.</span> <span class="toc-text">最后</span></a></li></ol>
-        
-    </div>
-    <style>
-        .left-col .switch-btn,
-        .left-col .switch-area {
-            display: none;
-        }
-        .toc-level-3 i,
-        .toc-level-3 ol {
-            display: none !important;
-        }
-    </style>
-
-    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
-
-    <script>
-        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
-    </script>
-
-
-
-    
-<div class="share">
-    
-        <div class="bdsharebuttonbox">
-            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
-            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
-            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
-            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
-            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
-            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
-        </div>
-        <script>
-            window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"从code7到xcode8都有哪些坑?　| EA88'Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-        </script>
-    
-
-    
-</div>
-
-
-
-
-
-
-
-    
-
-
-
-
-    <div class="scroll" id="post-nav-button">
-        
-            <a href="/2016/10/23/高效学习法/" title="上一篇: 高效学习法">
-                <i class="fa fa-angle-left"></i>
-            </a>
-        
-
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-
-        
-            <a href="/2016/09/16/Mach-O格式文件(用户态下的进程加载)/" title="下一篇: Mach-O格式文件(用户态下的进程加载)">
-                <i class="fa fa-angle-right"></i>
-            </a>
-        
-    </div>
-
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/11/15/苹果的文字系统/">苹果文字系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/27/TheResponderChain/">iOS的事件处理顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/23/高效学习法/">高效学习法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/22/从code7到xcode8都有哪些坑？/">从code7到xcode8都有哪些坑?</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/16/Mach-O格式文件(用户态下的进程加载)/">Mach-O格式文件(用户态下的进程加载)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/11/Mach原语：一起以消息为媒介/">Mach原语：一切以消息为媒介</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/08/Building xnu for OS X 10.11 El Capitan/">Building xnu for OS X 10.11 El Capitan</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/由生到死--内核引导和内核崩溃/">由生到死--内核引导和内核崩溃</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/04/内核架构/">内核架构</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/02/贯穿始终-launchd/">贯穿始终-launchd</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/02/iOS支持懒加载的PageViewController/">iOS支持懒加载的PageViewController</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/01/引导过程：EFI和iBoot/">引导过程：EFI和iBoot</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/30/Mach调度/">Mach调度</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/30/文件系统和虚拟文件系统交换（VFS）/">文件系统和虚拟文件系统交换（VFS）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/30/React Native笔记/">React Native笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/30/网络七层协议（结合操作系统来了解）/">网络七层协议（结合操作系统来了解）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/30/H5的体验优化/">H5的体验优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/30/创建pod库的步骤/">创建pod库的步骤</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/30/iOS签名/">iOS签名</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/30/读书笔记之《如何阅读一本书》/">读书笔记之《如何阅读一本书》</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/09/KVO后[obj class]与object_getClass(id obj)的结果竟会不一致？/">KVO后[obj class]与object_getClass(id obj)的结果竟会不一致？</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/24/简约的iOS音乐播放UI控件/">简约的iOS音乐播放UI控件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/29/iOS引导页的镂空效果/">iOS引导页的镂空效果</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/19/iOS中的MAX-A-B-，需要注意的点/">iOS中的MAX(A,B)，需要注意的点</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/16/Thrift的二进制数据编解码-以OC为例/">Thrift的二进制数据编解码--以OC为例</a></li></ul>
-
-
-
-
-    <script>
-        
-    </script>
-</div>
-      <footer id="footer">
-    <div class="outer">
-        <div id="footer-info">
-            <div class="footer-left">
-                <i class="fa fa-copyright"></i> 
-                2016 EA88
-            </div>
-            <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
-            </div>
         </div>
         
-            <div class="visit">
-                
-                    <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
-                        </span>
-                    </span>
-                
-                
-                    <span>| </span>
-                
-                
-                    <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
-                        </span>
-                    </span>
-                
-            </div>
-        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
-</footer>
-    </div>
-    
-<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            var iPad = window.navigator.userAgent.indexOf('iPad');
-            if (iPad > -1 || $(".left-col").css("display") === "none") {
-                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
-                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
-                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
-            }
-            else {
-                var backgroundnum = 5;
-                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
-                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
-            }
-        })
-    </script>
-
-
-
-
-
-<div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
-</div>
-<script>
-    // Open in New Window
-    
-        var oOpenInNew = {
-            
-            
-            
-            
-            
-            
-             archives: ".archive-article-title", 
-             miniArchives: "a.post-list-link", 
-            
-             friends: "#js-friends a", 
-             socail: ".social a" 
-        }
-        for (var x in oOpenInNew) {
-            $(oOpenInNew[x]).attr("target", "_blank");
-        }
-    
-</script>
-
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
   </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="EA88" />
+          <p class="site-author-name" itemprop="name">EA88</p>
+          <p class="site-description motion-element" itemprop="description">见自己、见天地、见众生</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Easence" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/EA_Huang" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#冲动的惩罚"><span class="nav-number">1.</span> <span class="nav-text">冲动的惩罚</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#坑与填平坑"><span class="nav-number">2.</span> <span class="nav-text">坑与填平坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Storyboard"><span class="nav-number">2.1.</span> <span class="nav-text">Storyboard</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#所有UI控件的宽高设定了同一个初始值：1000。"><span class="nav-number">2.1.1.</span> <span class="nav-text">所有UI控件的宽高设定了同一个初始值：1000。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cornerRadius"><span class="nav-number">2.1.2.</span> <span class="nav-text">cornerRadius</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TableView-static-cells"><span class="nav-number">2.1.3.</span> <span class="nav-text">TableView static cells</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不支持iOS7，却可以提交iOS7应用"><span class="nav-number">2.1.4.</span> <span class="nav-text">不支持iOS7，却可以提交iOS7应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#卡卡卡"><span class="nav-number">2.1.5.</span> <span class="nav-text">卡卡卡</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">3.</span> <span class="nav-text">最后</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EA88</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
 </body>
 </html>
