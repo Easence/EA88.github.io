@@ -99,7 +99,7 @@ Token会在iOS系统更新或者设备数据、设置被擦除的时候改变。
 <meta property="og:image" content="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Art/service_provider_ct_2x.png">
 <meta property="og:image" content="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Art/service_provider_ct_certificate_2x.png">
 <meta property="og:image" content="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Art/token_generation_2x.png">
-<meta property="og:updated_time" content="2016-12-20T10:36:02.000Z">
+<meta property="og:updated_time" content="2016-12-20T10:50:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发之APNs">
 <meta name="twitter:description" content="一、要点概述
@@ -435,19 +435,20 @@ Token会在iOS系统更新或者设备数据、设置被擦除的时候改变。
 <li><p>基于token方式的request：</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">HEADERS</div><div class="line">  - END_STREAM</div><div class="line">  + END_HEADERS</div><div class="line">  :method = POST</div><div class="line">  :scheme = https</div><div class="line">  :path = /3/device/00fc13adff785122b4ad28809a3420982341241421348097878e577c991de8f0</div><div class="line">  host = api.development.push.apple.com</div><div class="line">  authorization = bearer eyAia2lkIjogIjhZTDNHM1JSWDciIH0.eyAiaXNzIjogIkM4Nk5WOUpYM0QiLCAiaWF0I</div><div class="line"> jogIjE0NTkxNDM1ODA2NTAiIH0.MEYCIQDzqyahmH1rz1s-LFNkylXEa2lZ_aOCX4daxxTZkVEGzwIhALvkClnx5m5eAT6</div><div class="line"> Lxw7LZtEQcH6JENhJTMArwLf3sXwi</div><div class="line">  apns-id = eabeae54-14a8-11e5-b60b-1697f925ec7b</div><div class="line">  apns-expiration = 0</div><div class="line">  apns-priority = 10</div><div class="line">  apns-topic = &lt;MyAppTopic&gt;</div><div class="line">DATA</div><div class="line">  + END_STREAM</div><div class="line">    &#123; &quot;aps&quot; : &#123; &quot;alert&quot; : &quot;Hello&quot; &#125; &#125;</div></pre></td></tr></table></figure>
 </li>
-<li><p>成功后的response： </p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">	HEADERS</div><div class="line">	  	+ END_STREAM</div><div class="line">	  	+ END_HEADERS</div><div class="line">	  	apns-id = eabeae54-14a8-11e5-b60b-1697f925ec7b</div><div class="line">	  	:status = 200</div><div class="line">	```	</div><div class="line">	</div><div class="line">- 失败后的response：</div></pre></td></tr></table></figure>
-<p>  HEADERS</p>
-<pre><code>- END_STREAM
-+ END_HEADERS
-:status = 400
-content-type = application/json
-  apns-id: &lt;a_UUID&gt;
-</code></pre><p>  DATA</p>
-<pre><code>+ END_STREAM
-{ &quot;reason&quot; : &quot;BadDeviceToken&quot; }
-</code></pre><p>  ```</p>
+</ul>
+<ul>
+<li><p>失败后的response:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">HEADERS</div><div class="line">  - END_STREAM</div><div class="line">  + END_HEADERS</div><div class="line">  :status = 400</div><div class="line">  content-type = application/json</div><div class="line">    apns-id: &lt;a_UUID&gt;</div><div class="line">DATA</div><div class="line">  + END_STREAM</div><div class="line">  &#123; &quot;reason&quot; : &quot;BadDeviceToken&quot; &#125;</div></pre></td></tr></table></figure>
 </li>
+</ul>
+<ul>
+<li><p>成功后的response：</p>
+<pre><code>HEADERS
+   + END_STREAM
+   + END_HEADERS
+   apns-id = eabeae54-14a8-11e5-b60b-1697f925ec7b
+   :status = 200
+</code></pre></li>
 </ul>
 <h2 id="四、设备token的生成与分发"><a href="#四、设备token的生成与分发" class="headerlink" title="四、设备token的生成与分发"></a>四、设备token的生成与分发</h2><p>在app启动的时候，必须向iOS系统注册远程推送，成功后，苹果将会返回一个设备token给app，此时app就可以将这个token上报给自己的后台。</p>
 <p>如果有必要产生一个新的token，APNs会使用设备证书生成一个token（其中包含了一个设备ID），并使用token key加密后返回给设备。同时设备会将这个token以<code>NSData</code>对象的形式返回给app，app获取到该token之后应该将其发送到自己后台，后台之后就可以通过这个token来发送推送数据。过程如下图：</p>
