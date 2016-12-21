@@ -363,13 +363,17 @@
       
         
           
-            <h2 id="一、要点概述"><a href="#一、要点概述" class="headerlink" title="一、要点概述"></a>一、要点概述</h2><p>关于设备token以及推送消息的生命周期需要注意下面几点：</p>
+            <p><em>本文的大部分内容是对苹果关于APNs官方文档的翻译以及整理。</em></p>
+<h2 id="一、要点概述"><a href="#一、要点概述" class="headerlink" title="一、要点概述"></a>一、要点概述</h2><p>关于设备token以及推送消息的生命周期需要注意下面几点：</p>
 <ul>
 <li>Token会在iOS系统更新或者设备数据、设置被擦除的时候改变。</li>
 <li>当设备离线的时候，APNS会将消息数据存储一段时间，等设备上线后重发。如果设备在离线期间，向APNS发送了多条推送消息，APNS将会丢弃掉前面的一些消息，只保留后面的消息，要是设备长时间离线，则会将所有的消息丢弃掉。</li>
 <li>可以通过设置http/2头中的<code>apns-collapse-id</code>键值对来合并消息，比如：<code>apns-collapse-id : 2</code>，那么value为2的消息将被APNS合并成一条消息推送给设备。</li>
 </ul>
-<h2 id="二、Provider（后台）与APNs的交互"><a href="#二、Provider（后台）与APNs的交互" class="headerlink" title="二、Provider（后台）与APNs的交互"></a>二、Provider（后台）与APNs的交互</h2><p>Provider（即，APP的后台）与APNS有两种可信赖的交互方式，具体如下：</p>
+<h2 id="二、Provider（后台）与APNs的交互"><a href="#二、Provider（后台）与APNs的交互" class="headerlink" title="二、Provider（后台）与APNs的交互"></a>二、Provider（后台）与APNs的交互</h2><p>Provider（即，APP的后台）与APNS有两种安全的交互方式，都必须采用TLS以保证可靠性，更详细的内容继续往下看。</p>
+<blockquote>
+<p><code>TLS</code>的简单理解是，为了保证数据传输安全，在HTTP层与TCP层之间插入的一个安全校验层，它所做的事情简单来说就是：<strong>“通过CA申请的证书验证client与server是可靠的之后，通过相应的公私钥加密一个<code>协商的公钥</code>，之后的真实数据传输就使用这个公钥进行加密，以保证数据的安全可靠性”</strong>，关于TLS的更详细的介绍，可以参考<a href="https://segmentfault.com/a/1190000002554673" target="_blank" rel="external">这篇文章</a></p>
+</blockquote>
 <h3 id="基于Token的方式（Token-Based-Provider-to-APNs-Trust）"><a href="#基于Token的方式（Token-Based-Provider-to-APNs-Trust）" class="headerlink" title="基于Token的方式（Token-Based Provider-to-APNs Trust）"></a>基于Token的方式（Token-Based Provider-to-APNs Trust）</h3><h4 id="1、流程概述"><a href="#1、流程概述" class="headerlink" title="1、流程概述"></a>1、流程概述</h4><p>这种方式适合在基于HTTP/2协议的Provider使用，它与APNs之间的连接通过<a href="https://tools.ietf.org/html/rfc7519" target="_blank" rel="external">JWT（JSON web tokens）</a>来验证。在这种方式下不需要使用证书+私钥的方式来建立可靠连接。Provider只需要提供一个一对公私钥（私钥给APNs保存，公钥Provider自己保存）,并使用其中的私钥生成并加密JWT Token，每次向APNs请求推送的时候带上这个Token即可。</p>
 <p>具体步骤如下：</p>
 <ol>
@@ -419,7 +423,7 @@
 <li>当需要发送大量的推送数据的时候，可以同时创建多个连接，以改善性能。</li>
 <li>当吊销证书或者token时，应该关闭所有相关的连接。</li>
 </ul>
-<h3 id="HTTP-2的请求与相应"><a href="#HTTP-2的请求与相应" class="headerlink" title="HTTP/2的请求与相应"></a>HTTP/2的请求与相应</h3><p>详情参见苹果官方文档<a href="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/CommunicatingwithAPNs.html#//apple_ref/doc/uid/TP40008194-CH11-SW2" target="_blank" rel="external">HTTP/2 Request to APNs</a>。这里介绍了接口的<strong>请求参数</strong>、<strong>返回结果</strong>，<strong>错误码</strong>以及<strong>示例代码</strong>。下面截取了其中的例子：</p>
+<h3 id="HTTP-2的请求与响应"><a href="#HTTP-2的请求与响应" class="headerlink" title="HTTP/2的请求与响应"></a>HTTP/2的请求与响应</h3><p>详情可参见苹果官方文档<a href="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/CommunicatingwithAPNs.html#//apple_ref/doc/uid/TP40008194-CH11-SW2" target="_blank" rel="external">HTTP/2 Request to APNs</a>。这里介绍了接口的<strong>请求参数</strong>、<strong>返回结果</strong>，<strong>错误码</strong>以及<strong>示例代码</strong>。下面仅截取了其中的例子，以加深对APNs的使用的理解：</p>
 <ul>
 <li><p>基于证书的方式的request：</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">HEADERS</div><div class="line">  - END_STREAM</div><div class="line">  + END_HEADERS</div><div class="line">  :method = POST</div><div class="line">  :scheme = https</div><div class="line">  :path = /3/device/00fc13adff785122b4ad28809a3420982341241421348097878e577c991de8f0</div><div class="line">  host = api.development.push.apple.com</div><div class="line">  apns-id = eabeae54-14a8-11e5-b60b-1697f925ec7b //可以不填，如果不填APNs会自己创建一个UUID并在response中返回</div><div class="line">  apns-expiration = 0</div><div class="line">  apns-priority = 10</div><div class="line">DATA</div><div class="line">  + END_STREAM</div><div class="line">    &#123; &quot;aps&quot; : &#123; &quot;alert&quot; : &quot;Hello&quot; &#125; &#125;</div></pre></td></tr></table></figure>
@@ -447,6 +451,14 @@
 <h2 id="四、设备token的生成与分发"><a href="#四、设备token的生成与分发" class="headerlink" title="四、设备token的生成与分发"></a>四、设备token的生成与分发</h2><p>在app启动的时候，必须向iOS系统注册远程推送，成功后，苹果将会返回一个设备token给app，此时app就可以将这个token上报给自己的后台。</p>
 <p>如果有必要产生一个新的token，APNs会使用设备证书生成一个token（其中包含了一个设备ID），并使用token key加密后返回给设备。同时设备会将这个token以<code>NSData</code>对象的形式返回给app，app获取到该token之后应该将其发送到自己后台，后台之后就可以通过这个token来发送推送数据。过程如下图：</p>
 <p><img src="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Art/token_generation_2x.png" alt="Managing the device token"></p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>通过苹果的官方文档我们可以知道provider与APNs的交互过程中，需要注意一下几点：</p>
+<ul>
+<li>推荐使用<code>HTTP/2</code>协议。</li>
+<li>必须加入<code>TLS</code>层。</li>
+<li>基于JWT的方式，token的最大有效期为1小时，并且不能频繁更换token。</li>
+<li>不能频繁创建、关闭连接，应该尽量少开连接，如果过于频繁，APNs将把其当做是黑客攻击，但是如果数据量大，可以同时多个连接向APNs发送消息。</li>
+<li>吊销token或者证书的时候，应该及时关闭老的连接。</li>
+</ul>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
 <li><a href="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/APNSOverview.html#//apple_ref/doc/uid/TP40008194-CH8-SW1" target="_blank" rel="external">APNs Overview</a></li>
 <li><a href="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/CommunicatingwithAPNs.html#//apple_ref/doc/uid/TP40008194-CH11-SW2" target="_blank" rel="external">Communicating with APNs</a></li>
