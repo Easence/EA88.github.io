@@ -363,10 +363,11 @@
       
         
           
-            <h2 id="一、要点概述"><a href="#一、要点概述" class="headerlink" title="一、要点概述"></a>一、要点概述</h2><ul>
+            <h2 id="一、要点概述"><a href="#一、要点概述" class="headerlink" title="一、要点概述"></a>一、要点概述</h2><p>关于设备token以及推送消息的生命周期需要注意下面几点：</p>
+<ul>
 <li>Token会在iOS系统更新或者设备数据、设置被擦除的时候改变。</li>
-<li>当设备离线的时候，APNS会将通知数据存储一段时间，等设备上线后重发。如果设备在离线期间，向APNS发送了多条推送通知，APNS将会丢弃掉前面的一些通知，只保留后面的通知，要是设备长时间离线，则会将所有的通知丢弃掉。</li>
-<li>可以通过设置http/2头中的<code>apns-collapse-id</code>键值对来合并通知，比如：<code>apns-collapse-id : 2</code>，那么value为2的通知将被APNS合并成一条通知推送给设备。</li>
+<li>当设备离线的时候，APNS会将消息数据存储一段时间，等设备上线后重发。如果设备在离线期间，向APNS发送了多条推送消息，APNS将会丢弃掉前面的一些消息，只保留后面的消息，要是设备长时间离线，则会将所有的消息丢弃掉。</li>
+<li>可以通过设置http/2头中的<code>apns-collapse-id</code>键值对来合并消息，比如：<code>apns-collapse-id : 2</code>，那么value为2的消息将被APNS合并成一条消息推送给设备。</li>
 </ul>
 <h2 id="二、Provider（后台）与APNs的交互"><a href="#二、Provider（后台）与APNs的交互" class="headerlink" title="二、Provider（后台）与APNs的交互"></a>二、Provider（后台）与APNs的交互</h2><p>Provider（即，APP的后台）与APNS有两种可信赖的交互方式，具体如下：</p>
 <h3 id="基于Token的方式（Token-Based-Provider-to-APNs-Trust）"><a href="#基于Token的方式（Token-Based-Provider-to-APNs-Trust）" class="headerlink" title="基于Token的方式（Token-Based Provider-to-APNs Trust）"></a>基于Token的方式（Token-Based Provider-to-APNs Trust）</h3><h4 id="1、流程概述"><a href="#1、流程概述" class="headerlink" title="1、流程概述"></a>1、流程概述</h4><p>这种方式适合在基于HTTP/2协议的Provider使用，它与APNs之间的连接通过<a href="https://tools.ietf.org/html/rfc7519" target="_blank" rel="external">JWT（JSON web tokens）</a>来验证。在这种方式下不需要使用证书+私钥的方式来建立可靠连接。Provider只需要提供一个一对公私钥（私钥给APNs保存，公钥Provider自己保存）,并使用其中的私钥生成并加密JWT Token，每次向APNs请求推送的时候带上这个Token即可。</p>
@@ -437,15 +438,19 @@
 <ul>
 <li><p>成功后的response：</p>
 <pre><code>HEADERS
-   + END_STREAM
-   + END_HEADERS
-   apns-id = eabeae54-14a8-11e5-b60b-1697f925ec7b
-   :status = 200
+  - END_STREAM
+  + END_HEADERS
+    apns-id = eabeae54-14a8-11e5-b60b-1697f925ec7b
+    :status = 200
 </code></pre></li>
 </ul>
 <h2 id="四、设备token的生成与分发"><a href="#四、设备token的生成与分发" class="headerlink" title="四、设备token的生成与分发"></a>四、设备token的生成与分发</h2><p>在app启动的时候，必须向iOS系统注册远程推送，成功后，苹果将会返回一个设备token给app，此时app就可以将这个token上报给自己的后台。</p>
 <p>如果有必要产生一个新的token，APNs会使用设备证书生成一个token（其中包含了一个设备ID），并使用token key加密后返回给设备。同时设备会将这个token以<code>NSData</code>对象的形式返回给app，app获取到该token之后应该将其发送到自己后台，后台之后就可以通过这个token来发送推送数据。过程如下图：</p>
 <p><img src="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Art/token_generation_2x.png" alt="Managing the device token"></p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
+<li><a href="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/APNSOverview.html#//apple_ref/doc/uid/TP40008194-CH8-SW1" target="_blank" rel="external">APNs Overview</a></li>
+<li><a href="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/CommunicatingwithAPNs.html#//apple_ref/doc/uid/TP40008194-CH11-SW2" target="_blank" rel="external">Communicating with APNs</a></li>
+</ol>
 
           
         
@@ -1875,7 +1880,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
