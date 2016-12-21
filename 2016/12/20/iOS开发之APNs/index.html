@@ -85,30 +85,30 @@
 
 
 <meta name="description" content="本文的大部分内容是对苹果关于APNs官方文档的翻译以及整理。
-一、要点概述关于设备token以及推送消息的生命周期需要注意下面几点：
+一、设备token和消息的生命周期关于设备token以及推送消息的生命周期需要注意下面几点：
 
 Token会在iOS系统更新或者设备数据、设置被擦除的时候改变。
-当设备离线的时候，APNS会将消息数据存储一段时间，等设备上线后重发。如果设备在离线期间，向APNS发送了多条推送消息，APNS将会丢弃掉前面的一些消息，只保留后面的消息，要是设备长时间离线，则会将">
+当设备离线的时候，APNS会将消息数据存储一段时间，等设备上线后重发。如果设备在离线期间，向APNS发送了多条推送消息，APNS将会丢弃掉前面的一些消息，只保留后面的消息，要是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS开发之新版APNs搭建必备知识">
 <meta property="og:url" content="https://github.com/Easence/2016/12/20/iOS开发之APNs/index.html">
 <meta property="og:site_name" content="EA88'Blog">
 <meta property="og:description" content="本文的大部分内容是对苹果关于APNs官方文档的翻译以及整理。
-一、要点概述关于设备token以及推送消息的生命周期需要注意下面几点：
+一、设备token和消息的生命周期关于设备token以及推送消息的生命周期需要注意下面几点：
 
 Token会在iOS系统更新或者设备数据、设置被擦除的时候改变。
-当设备离线的时候，APNS会将消息数据存储一段时间，等设备上线后重发。如果设备在离线期间，向APNS发送了多条推送消息，APNS将会丢弃掉前面的一些消息，只保留后面的消息，要是设备长时间离线，则会将">
+当设备离线的时候，APNS会将消息数据存储一段时间，等设备上线后重发。如果设备在离线期间，向APNS发送了多条推送消息，APNS将会丢弃掉前面的一些消息，只保留后面的消息，要是">
 <meta property="og:image" content="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Art/service_provider_ct_2x.png">
 <meta property="og:image" content="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Art/service_provider_ct_certificate_2x.png">
 <meta property="og:image" content="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Art/token_generation_2x.png">
-<meta property="og:updated_time" content="2016-12-21T03:00:21.000Z">
+<meta property="og:updated_time" content="2016-12-21T03:02:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发之新版APNs搭建必备知识">
 <meta name="twitter:description" content="本文的大部分内容是对苹果关于APNs官方文档的翻译以及整理。
-一、要点概述关于设备token以及推送消息的生命周期需要注意下面几点：
+一、设备token和消息的生命周期关于设备token以及推送消息的生命周期需要注意下面几点：
 
 Token会在iOS系统更新或者设备数据、设置被擦除的时候改变。
-当设备离线的时候，APNS会将消息数据存储一段时间，等设备上线后重发。如果设备在离线期间，向APNS发送了多条推送消息，APNS将会丢弃掉前面的一些消息，只保留后面的消息，要是设备长时间离线，则会将">
+当设备离线的时候，APNS会将消息数据存储一段时间，等设备上线后重发。如果设备在离线期间，向APNS发送了多条推送消息，APNS将会丢弃掉前面的一些消息，只保留后面的消息，要是">
 <meta name="twitter:image" content="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Art/service_provider_ct_2x.png">
 
 
@@ -374,7 +374,7 @@ Token会在iOS系统更新或者设备数据、设置被擦除的时候改变。
 
       
         <p><em>本文的大部分内容是对苹果关于APNs官方文档的翻译以及整理。</em></p>
-<h2 id="一、要点概述"><a href="#一、要点概述" class="headerlink" title="一、要点概述"></a>一、要点概述</h2><p>关于设备token以及推送消息的生命周期需要注意下面几点：</p>
+<h2 id="一、设备token和消息的生命周期"><a href="#一、设备token和消息的生命周期" class="headerlink" title="一、设备token和消息的生命周期"></a>一、设备token和消息的生命周期</h2><p>关于设备token以及推送消息的生命周期需要注意下面几点：</p>
 <ul>
 <li>Token会在iOS系统更新或者设备数据、设置被擦除的时候改变。</li>
 <li>当设备离线的时候，APNS会将消息数据存储一段时间，等设备上线后重发。如果设备在离线期间，向APNS发送了多条推送消息，APNS将会丢弃掉前面的一些消息，只保留后面的消息，要是设备长时间离线，则会将所有的消息丢弃掉。</li>
@@ -655,7 +655,7 @@ Token会在iOS系统更新或者设备数据、设置被擦除的时候改变。
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、要点概述"><span class="nav-number">1.</span> <span class="nav-text">一、要点概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、Provider（后台）与APNs的交互"><span class="nav-number">2.</span> <span class="nav-text">二、Provider（后台）与APNs的交互</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于Token的方式（Token-Based-Provider-to-APNs-Trust）"><span class="nav-number">2.1.</span> <span class="nav-text">基于Token的方式（Token-Based Provider-to-APNs Trust）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、流程概述"><span class="nav-number">2.1.1.</span> <span class="nav-text">1、流程概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、Provider-Authentication-Tokens"><span class="nav-number">2.1.2.</span> <span class="nav-text">2、Provider Authentication Tokens</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于证书的方式（Certificate-based-connection-trust"><span class="nav-number">2.2.</span> <span class="nav-text">基于证书的方式（Certificate-based connection trust)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#流程概述"><span class="nav-number">2.2.1.</span> <span class="nav-text">流程概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#APNs-Provider-Certificates"><span class="nav-number">2.2.2.</span> <span class="nav-text">APNs Provider Certificates</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、APNs连接"><span class="nav-number">3.</span> <span class="nav-text">三、APNs连接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#连接的管理"><span class="nav-number">3.1.</span> <span class="nav-text">连接的管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-2的请求与响应"><span class="nav-number">3.2.</span> <span class="nav-text">HTTP/2的请求与响应</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、设备token的生成与分发"><span class="nav-number">4.</span> <span class="nav-text">四、设备token的生成与分发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">5.</span> <span class="nav-text">最后</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">6.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、设备token和消息的生命周期"><span class="nav-number">1.</span> <span class="nav-text">一、设备token和消息的生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、Provider（后台）与APNs的交互"><span class="nav-number">2.</span> <span class="nav-text">二、Provider（后台）与APNs的交互</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于Token的方式（Token-Based-Provider-to-APNs-Trust）"><span class="nav-number">2.1.</span> <span class="nav-text">基于Token的方式（Token-Based Provider-to-APNs Trust）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、流程概述"><span class="nav-number">2.1.1.</span> <span class="nav-text">1、流程概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、Provider-Authentication-Tokens"><span class="nav-number">2.1.2.</span> <span class="nav-text">2、Provider Authentication Tokens</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于证书的方式（Certificate-based-connection-trust"><span class="nav-number">2.2.</span> <span class="nav-text">基于证书的方式（Certificate-based connection trust)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#流程概述"><span class="nav-number">2.2.1.</span> <span class="nav-text">流程概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#APNs-Provider-Certificates"><span class="nav-number">2.2.2.</span> <span class="nav-text">APNs Provider Certificates</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、APNs连接"><span class="nav-number">3.</span> <span class="nav-text">三、APNs连接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#连接的管理"><span class="nav-number">3.1.</span> <span class="nav-text">连接的管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-2的请求与响应"><span class="nav-number">3.2.</span> <span class="nav-text">HTTP/2的请求与响应</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、设备token的生成与分发"><span class="nav-number">4.</span> <span class="nav-text">四、设备token的生成与分发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">5.</span> <span class="nav-text">最后</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">6.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
