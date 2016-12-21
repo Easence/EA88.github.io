@@ -101,7 +101,7 @@ Token会在iOS系统更新或者设备数据、设置被擦除的时候改变。
 <meta property="og:image" content="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Art/service_provider_ct_2x.png">
 <meta property="og:image" content="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Art/service_provider_ct_certificate_2x.png">
 <meta property="og:image" content="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Art/token_generation_2x.png">
-<meta property="og:updated_time" content="2016-12-21T03:02:36.000Z">
+<meta property="og:updated_time" content="2016-12-21T03:30:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发之新版APNs搭建必备知识">
 <meta name="twitter:description" content="本文的大部分内容是对苹果关于APNs官方文档的翻译以及整理。
@@ -428,7 +428,7 @@ Token会在iOS系统更新或者设备数据、设置被擦除的时候改变。
 <p>要与APNs交互要求server必须支持1.2及上版本的TLS协议。通过上面的介绍我们已经知道，server跟APNs交互有两种方式：基于JWT的方式以及基于证书的方式。为了保证高质量的使用APNs应该注意如下几点：</p>
 <ul>
 <li>对于基于JWT的方式，应该定时更新token，token的有效期为1小时。</li>
-<li>不对于基于JWT的方式，能每次请求都创建新的token，尽量在一小时内使用同一个token。</li>
+<li>对于基于JWT的方式，能每次请求都创建新的token，尽量在一小时内使用同一个token。</li>
 <li>不能频繁的建立、关闭连接，否则APNs会把这当做是黑客攻击，拒绝访问。应该尽量将连接保活，直到你认为这个连接接下来会长时间不使用为止。</li>
 <li>当需要发送大量的推送数据的时候，可以同时创建多个连接，以改善性能。</li>
 <li>当吊销证书或者token时，应该关闭所有相关的连接。</li>
