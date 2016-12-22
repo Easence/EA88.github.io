@@ -84,33 +84,21 @@
 
 
 
-<meta name="description" content="本文大部分内容摘自《Web性能权威指南》，然后经过本人的整理修饰，产生了本文。
-开始：什么是TCP、IP
-IP，即 Internet Protocol(因特网协议)，位于网络层，负责联网主机之间的路由选择和寻址;
-TCP，即 Transmission Control Protocol(传输控制协议)，位于传输层，负责在不可靠的传输信道之上提供可靠的抽象层。
-
-TCP 负责在不可靠的传输信道之上提供">
+<meta name="description" content="本文大部分内容摘自《Web性能权威指南》，然后经过本人的整理修饰，产生了本文，仅供学习所用。
+开始我们做为一名互联网时代的开发，由于各种信息、知识的开源与共享，想要开发出一款可用网络应用已经相当容易了，但是想要开发出一款“快速”访问网络的应用，却并不是那么简单，需要经过无数的优化，踩过无数的坑才能更“快”。然而，如果对网络背后的原理都半点不知，又从何谈起优化，更不用说动手去优化。说到网络协议，我们">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TCP/IP协议的理解与调优">
 <meta property="og:url" content="https://github.com/Easence/2016/12/21/TCP-IP-detail/index.html">
 <meta property="og:site_name" content="EA88'Blog">
-<meta property="og:description" content="本文大部分内容摘自《Web性能权威指南》，然后经过本人的整理修饰，产生了本文。
-开始：什么是TCP、IP
-IP，即 Internet Protocol(因特网协议)，位于网络层，负责联网主机之间的路由选择和寻址;
-TCP，即 Transmission Control Protocol(传输控制协议)，位于传输层，负责在不可靠的传输信道之上提供可靠的抽象层。
-
-TCP 负责在不可靠的传输信道之上提供">
+<meta property="og:description" content="本文大部分内容摘自《Web性能权威指南》，然后经过本人的整理修饰，产生了本文，仅供学习所用。
+开始我们做为一名互联网时代的开发，由于各种信息、知识的开源与共享，想要开发出一款可用网络应用已经相当容易了，但是想要开发出一款“快速”访问网络的应用，却并不是那么简单，需要经过无数的优化，踩过无数的坑才能更“快”。然而，如果对网络背后的原理都半点不知，又从何谈起优化，更不用说动手去优化。说到网络协议，我们">
 <meta property="og:image" content="https://github.com/Easence/../images/shake_hand.png">
 <meta property="og:image" content="https://github.com/Easence/../images/TCP_HOL.png">
-<meta property="og:updated_time" content="2016-12-22T01:21:03.000Z">
+<meta property="og:updated_time" content="2016-12-22T01:46:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TCP/IP协议的理解与调优">
-<meta name="twitter:description" content="本文大部分内容摘自《Web性能权威指南》，然后经过本人的整理修饰，产生了本文。
-开始：什么是TCP、IP
-IP，即 Internet Protocol(因特网协议)，位于网络层，负责联网主机之间的路由选择和寻址;
-TCP，即 Transmission Control Protocol(传输控制协议)，位于传输层，负责在不可靠的传输信道之上提供可靠的抽象层。
-
-TCP 负责在不可靠的传输信道之上提供">
+<meta name="twitter:description" content="本文大部分内容摘自《Web性能权威指南》，然后经过本人的整理修饰，产生了本文，仅供学习所用。
+开始我们做为一名互联网时代的开发，由于各种信息、知识的开源与共享，想要开发出一款可用网络应用已经相当容易了，但是想要开发出一款“快速”访问网络的应用，却并不是那么简单，需要经过无数的优化，踩过无数的坑才能更“快”。然而，如果对网络背后的原理都半点不知，又从何谈起优化，更不用说动手去优化。说到网络协议，我们">
 <meta name="twitter:image" content="https://github.com/Easence/../images/shake_hand.png">
 
 
@@ -364,8 +352,9 @@ TCP 负责在不可靠的传输信道之上提供">
       
 
       
-        <p><em>本文大部分内容摘自《Web性能权威指南》，然后经过本人的整理修饰，产生了本文。</em></p>
-<h2 id="开始：什么是TCP、IP"><a href="#开始：什么是TCP、IP" class="headerlink" title="开始：什么是TCP、IP"></a>开始：什么是TCP、IP</h2><ul>
+        <p><em>本文大部分内容摘自《Web性能权威指南》，然后经过本人的整理修饰，产生了本文，仅供学习所用。</em></p>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>我们做为一名互联网时代的开发，由于各种信息、知识的开源与共享，想要开发出一款可用网络应用已经相当容易了，但是想要开发出一款“快速”访问网络的应用，却并不是那么简单，需要经过无数的优化，踩过无数的坑才能更“快”。然而，如果对网络背后的原理都半点不知，又从何谈起优化，更不用说动手去优化。说到网络协议，我们自然而然会想到TCP/IP协议，因为它已经成了我们日常的一部分，只是因为它对绝大部分人来说都是透明的，看不见它。可是想要提高我们的网络应用的访问速度，却不得不揭开它的面纱，一窥其芳容。想要全面的了解它并不是一早一夕的事，我们只能先从出它的一些共性入手，下面便让我们一起看看到底TCP/IP是何物，又该如何让TCP更快一些。</p>
+<h2 id="什么是TCP、IP"><a href="#什么是TCP、IP" class="headerlink" title="什么是TCP、IP"></a>什么是TCP、IP</h2><ul>
 <li><strong>IP</strong>，即 Internet Protocol(因特网协议)，位于网络层，负责联网主机之间的路由选择和寻址;</li>
 <li><p><strong>TCP</strong>，即 Transmission Control Protocol(传输控制协议)，位于传输层，负责在不可靠的传输信道之上提供可靠的抽象层。</p>
 <blockquote>
@@ -395,7 +384,7 @@ TCP 负责在不可靠的传输信道之上提供">
 <h3 id="队首阻塞"><a href="#队首阻塞" class="headerlink" title="队首阻塞"></a>队首阻塞</h3><p>TCP在不可靠的信道上实现了可靠的网络传输。基本的分组错误检测与纠正、按序交付、丢包重发，以及保证网络最高效率的流量控制、拥塞控制和预防机制，让TCP成为大多数网络应用中最常见的传输协议。</p>
 <p>每个TCP分组都会带着一个唯一的序列号被发出，而所有分组必须按顺序传送到接收端(如下图)。如果中途有一个分组没能到达接收端，那么后续分组必须保存在接收端的TCP缓冲区，等待丢失的分组重发并到达接收端。这一切都发生在TCP层，应用程序对TCP重发和缓冲区中排队的分组一无所知，必须等待分组全部到达才能访问数据。在此之前，应用程序只能在通过套接字读数据时感觉到延迟交付。这种效应称为TCP的<strong>队首(HOL，Head of Line)阻塞</strong>。</p>
 <p><img src="../images/TCP_HOL.png" alt="3次握手"></p>
-<h2 id="针对TCP的优化建议"><a href="#针对TCP的优化建议" class="headerlink" title="针对TCP的优化建议"></a>针对TCP的优化建议</h2><p>TCP是一个自适应的、对所有网络节点一视同仁的、最大限制利用底层网络的协议。因此，优化TCP的<strong>最佳途径就是调整它感知当前网络状况的方式</strong>，根据它之上或之下的抽象层的类型和需求来改变它的行为。无线网络可能需要不同的拥塞算法，<strong>而某些应用程序可能需要自定义服务品质(QoS，Quality of Service)的含义</strong>，从而 交付最佳的体验。</p>
+<h2 id="怎么让TCP网络延迟小一些"><a href="#怎么让TCP网络延迟小一些" class="headerlink" title="怎么让TCP网络延迟小一些"></a>怎么让TCP网络延迟小一些</h2><p>TCP是一个自适应的、对所有网络节点一视同仁的、最大限制利用底层网络的协议。因此，优化TCP的<strong>最佳途径就是调整它感知当前网络状况的方式</strong>，根据它之上或之下的抽象层的类型和需求来改变它的行为。无线网络可能需要不同的拥塞算法，<strong>而某些应用程序可能需要自定义服务品质(QoS，Quality of Service)的含义</strong>，从而 交付最佳的体验。</p>
 <p>上面只蜻蜓点水般地介绍了影响TCP性能的几个典型因素，而没有探讨的选择性应答(SACK)、延迟应答、快速转发等，随 便一个都能让你领略到 TCP 的复杂性(或者乐趣)，感受到理解、分析和调优之难。</p>
 <p>尽管如此，而且每个算法和反馈机制的具体细节可能会继续发展，但核心原理以及它们的影响是不变的:</p>
 <ul>
@@ -596,7 +585,7 @@ TCP 负责在不可靠的传输信道之上提供">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开始：什么是TCP、IP"><span class="nav-number">1.</span> <span class="nav-text">开始：什么是TCP、IP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#是什么给TCP带来了网络延迟"><span class="nav-number">2.</span> <span class="nav-text">是什么给TCP带来了网络延迟</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP的3次握手"><span class="nav-number">2.1.</span> <span class="nav-text">TCP的3次握手</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP的流量控制"><span class="nav-number">2.2.</span> <span class="nav-text">TCP的流量控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP的慢启动"><span class="nav-number">2.3.</span> <span class="nav-text">TCP的慢启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP的拥塞预防"><span class="nav-number">2.4.</span> <span class="nav-text">TCP的拥塞预防</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#队首阻塞"><span class="nav-number">2.5.</span> <span class="nav-text">队首阻塞</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#针对TCP的优化建议"><span class="nav-number">3.</span> <span class="nav-text">针对TCP的优化建议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器配置调优"><span class="nav-number">3.1.</span> <span class="nav-text">服务器配置调优</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用程序行为调优"><span class="nav-number">3.2.</span> <span class="nav-text">应用程序行为调优</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">4.</span> <span class="nav-text">最后</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开始"><span class="nav-number">1.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是TCP、IP"><span class="nav-number">2.</span> <span class="nav-text">什么是TCP、IP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#是什么给TCP带来了网络延迟"><span class="nav-number">3.</span> <span class="nav-text">是什么给TCP带来了网络延迟</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP的3次握手"><span class="nav-number">3.1.</span> <span class="nav-text">TCP的3次握手</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP的流量控制"><span class="nav-number">3.2.</span> <span class="nav-text">TCP的流量控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP的慢启动"><span class="nav-number">3.3.</span> <span class="nav-text">TCP的慢启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP的拥塞预防"><span class="nav-number">3.4.</span> <span class="nav-text">TCP的拥塞预防</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#队首阻塞"><span class="nav-number">3.5.</span> <span class="nav-text">队首阻塞</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么让TCP网络延迟小一些"><span class="nav-number">4.</span> <span class="nav-text">怎么让TCP网络延迟小一些</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器配置调优"><span class="nav-number">4.1.</span> <span class="nav-text">服务器配置调优</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用程序行为调优"><span class="nav-number">4.2.</span> <span class="nav-text">应用程序行为调优</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">5.</span> <span class="nav-text">最后</span></a></li></ol></div>
             
 
           </div>
