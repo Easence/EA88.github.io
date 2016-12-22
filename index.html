@@ -315,8 +315,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络/" itemprop="url" rel="index">
-                    <span itemprop="name">网络</span>
+                  <a href="/categories/Web性能调优/" itemprop="url" rel="index">
+                    <span itemprop="name">Web性能调优</span>
                   </a>
                 </span>
 
@@ -352,8 +352,8 @@
       
         
           
-            <p><em>本文大部分内容摘自《Web性能权威指南》。</em></p>
-<h2 id="什么是TCP、IP"><a href="#什么是TCP、IP" class="headerlink" title="什么是TCP、IP"></a>什么是TCP、IP</h2><ul>
+            <p><em>本文大部分内容摘自《Web性能权威指南》，然后经过本人的整理修饰，产生了本文。</em></p>
+<h2 id="开始：什么是TCP、IP"><a href="#开始：什么是TCP、IP" class="headerlink" title="开始：什么是TCP、IP"></a>开始：什么是TCP、IP</h2><ul>
 <li><strong>IP</strong>，即 Internet Protocol(因特网协议)，位于网络层，负责联网主机之间的路由选择和寻址;</li>
 <li><p><strong>TCP</strong>，即 Transmission Control Protocol(传输控制协议)，位于传输层，负责在不可靠的传输信道之上提供可靠的抽象层。</p>
 <blockquote>
@@ -361,7 +361,8 @@
 </blockquote>
 </li>
 </ul>
-<h2 id="影响TCP速度的几个点"><a href="#影响TCP速度的几个点" class="headerlink" title="影响TCP速度的几个点"></a>影响TCP速度的几个点</h2><h3 id="TCP的3次握手"><a href="#TCP的3次握手" class="headerlink" title="TCP的3次握手"></a>TCP的3次握手</h3><p>所有TCP连接一开始都要经过3次握手，如下图。<br><img src="../images/shake_hand.png" alt="3次握手"><br>3次握手的过程如下：</p>
+<h2 id="是什么给TCP带来了网络延迟"><a href="#是什么给TCP带来了网络延迟" class="headerlink" title="是什么给TCP带来了网络延迟"></a>是什么给TCP带来了网络延迟</h2><p>众所周知，在现代的网络应用中我们几乎离不开TCP，从浏览器到微信，无一例外。但，我们在享受TCP给我们带来的便利的同时，却又对其所带来的网络延迟感到煎熬，总是尝试去改善它，那么究竟是什么给TCP带来了不小的网络延迟呢？下面便列举几种常见的因素。</p>
+<h3 id="TCP的3次握手"><a href="#TCP的3次握手" class="headerlink" title="TCP的3次握手"></a>TCP的3次握手</h3><p>所有TCP连接一开始都要经过3次握手，如下图。<br><img src="../images/shake_hand.png" alt="3次握手"><br>3次握手的过程如下：</p>
 <ul>
 <li>SYN<br>客户端选择一个随机序列号x，并发送一个SYN分组，其中可能还包括其他TCP标志和选项。</li>
 <li>SYN ACK<br>服务器给x加1，并选择自己的一个随机序列号y，追加自己的标志和选项，然后返回响应。</li>
@@ -402,6 +403,7 @@
 <li><strong>通过在不同的地区部署服务器(比如，使用 CDN)，把数据放到接近客户端的地方，可以减少网络往返的延迟，从而显著提升TCP性能</strong>。</li>
 <li><strong>重用TCP连接</strong>，把慢启动和其他拥塞控制机制的影响降到最低。。</li>
 </ul>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>通过上面的介绍，我可以知道影响TCP性能的因素很多，有TCP的3次握手、流量控制、慢启动、拥塞预防等，这些因素既是TCP的特性也是导致TCP延迟的原因，让人又爱又恨。然而，为了让我们的应用快起来，我们又不得不尝试去优化TCP的速度，可悲的是过程很艰难，可喜的是并不是无计可施，针对TCP不同阶段的不同因素我们可以采取相应的措施，对其加以优化，便可以减少TCP特性所带来的网络延迟。</p>
 
           
         
