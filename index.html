@@ -367,7 +367,7 @@
 <p>SSL2.0是该协议第一个公开发布的版本，但由于存在很多安全缺陷很快就被SSL3.0取代。鉴于SSL协议是网景公司专有的，IETF成立了一个小组负责标准化该协议，后来就有了RFC2246，即TLS1.0，也就是SSL3.0的升级版。<strong>TLS包含两部分：握手协议、记录协议</strong>。</p>
 <p><img src="../images/TLS_in_OSI.png" alt="传输层安全(TLS"></p>
 <h2 id="2-TLS握手协议"><a href="#2-TLS握手协议" class="headerlink" title="2. TLS握手协议"></a>2. TLS握手协议</h2><h3 id="2-1-一般握手"><a href="#2-1-一般握手" class="headerlink" title="2.1 一般握手"></a>2.1 一般握手</h3><p>客户端与服务器在通过TLS交换数据之前，必须协商建立加密信道。协商内容包括TLS版本、加密套件，必要时还会验证证书。然而，协商过程的每一步都需要一个分组在客户端和服务器之间往返一次(如下图)，因而所有TLS连接启动时都要经历一定的延迟（最多需要两次额外往返）。</p>
-<p><img src="../images/shake_hand.png" alt="TLS握手协议"></p>
+<p><img src="../images/TLS_HandShake.png" alt="TLS握手协议"></p>
 <ul>
 <li>0ms : TLS在可靠的传输层(TCP)之上运行，这意味着首先必须完成TCP的“三次握手”，即一次完整的往返。</li>
 <li>56ms : TCP连接建立之后，客户端再以纯文本形式发送一些规格说明，比如它所运行的TLS协议的版本、它所支持的加密套件列表，以及它支持或希望使用的另外一些TLS选项。</li>
